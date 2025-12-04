@@ -1,0 +1,1909 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/21/2020 1:28:18 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{6D4FA6D2-B6A6-45DF-8EC7-203FB9C396D2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="LOAD_FACT_EVENTS_PUBTRANSP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="95"
+  DTS:VersionGUID="{45E11FAB-BF95-4035-B473-E3C0E1D481C0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Dados Eventos]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{693651C7-2533-4216-A2A6-22CA875DC61B}"
+      DTS:ObjectName="Dados Eventos">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[eventos20190508.json]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{2BD5AB3F-ECC2-434A-8EB0-915E352C200F}"
+      DTS:ObjectName="eventos20190508.json">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos\eventos20190508.json" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Events Files CM]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{B6C2C831-1275-48B5-A959-FF5B7B8C7688}"
+      DTS:ObjectName="Events Files CM">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::SOURCE_DIRECTORY] +"\\"+@[User::FILE]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_ONE"
+              DTS:DTSID="{DFA078AA-38A0-4B9C-81F0-96FB3C12DBDA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_TWO"
+              DTS:DTSID="{E202E506-A8E7-46E4-AC0E-D63A64871DC0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LATITUDE"
+              DTS:DTSID="{BFD2B2AF-CF4D-4526-BAA1-D7D1B7054D28}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LONGITUDE"
+              DTS:DTSID="{1A2E2275-F74A-4699-9337-DA5D40A7526C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COVERAGE_RADIUS"
+              DTS:DTSID="{7D903810-601D-4D90-B05B-01666A239F2C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="POPULATION"
+              DTS:DTSID="{10AB4827-9257-4312-AA6E-9ECA6C4B7D7F}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4CFFE6AE-3FF5-4B66-9BE8-5794D26D9F3A}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mid_destination]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{065531B2-12CB-4CE8-BA73-E7B6FDFB6A78}"
+      DTS:ObjectName="mid_destination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos\mid_destination\dest" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C1D3AA32-8E0B-466D-A24E-FBDFB0D68AAF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENTS_LIST">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EDB4F80E-F1E6-4BBE-8AFF-1FCC33F76CBB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENT_A">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8C0AF2EF-DAE7-497F-9BE8-43DEB9911376}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;&#xA;  SELECT [ID_EVENT]&#xA;, [EVENT_DATE]      ,[address]&#xA;      ,[borough]&#xA;      ,[code]&#xA;      ,[date]&#xA;      ,[detail]&#xA;      ,[end_date]&#xA;      ,[estimated_visitors]&#xA;&#x9;  ,CASE WHEN RIGHT(POSITION, 20) = '\&quot;MultiLineString\&quot;}]}' THEN 1&#xA;&#x9;  &#x9;&#x9;WHEN RIGHT(POSITION, 10) = '\&quot;Point\&quot;}]}'           THEN 0&#xA;&#x9;&#x9;&#x9;&#x9;END AS POSITION_TIPO&#xA;      ,CASE WHEN RIGHT(POSITION, 20) = '\&quot;MultiLineString\&quot;}]}' THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(SUBSTRING(position, 63, LEN(position)-93), '[[[','('),'], [',','),', ', ' '),']]]',')'),'[',''),']','') AS VARCHAR(8000))&#xA;&#x9;&#x9;&#x9;WHEN RIGHT(POSITION, 10) = '\&quot;Point\&quot;}]}'           THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LEFT(RIGHT(POSITION, 48),28),' ',''),'[','('),']',')'),'[',''),']',''),',',' ') AS VARCHAR(50))  ELSE NULL &#xA;&#x9;&#x9;&#x9;&#x9;END AS  POSITION_SUBSTRING&#xA;      ,[start_date]&#xA;      ,[typology]&#xA;      ,[typology_code]&#xA;      ,[entity_id]&#xA;      ,[entity_ts]&#xA;      ,[validity_ts]&#xA; FROM [SMART_M_LISBON].[dbo].[EVENTOS]&#xA;WHERE [ID_EVENT] = '&quot; + @[User::EVENT_A] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENT_EXTRACTION_QUERY">
+      <DTS:VariableValue
+        DTS:DataType="8">
+  SELECT [ID_EVENT]
+, [EVENT_DATE]      ,[address]
+      ,[borough]
+      ,[code]
+      ,[date]
+      ,[detail]
+      ,[end_date]
+      ,[estimated_visitors]
+	  ,CASE WHEN RIGHT(POSITION, 20) = '"MultiLineString"}]}' THEN 1
+	  		WHEN RIGHT(POSITION, 10) = '"Point"}]}'           THEN 0
+				END AS POSITION_TIPO
+      ,CASE WHEN RIGHT(POSITION, 20) = '"MultiLineString"}]}' THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(SUBSTRING(position, 63, LEN(position)-93), '[[[','('),'], [',','),', ', ' '),']]]',')'),'[',''),']','') AS VARCHAR(8000))
+			WHEN RIGHT(POSITION, 10) = '"Point"}]}'           THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LEFT(RIGHT(POSITION, 48),28),' ',''),'[','('),']',')'),'[',''),']',''),',',' ') AS VARCHAR(50))  ELSE NULL 
+				END AS  POSITION_SUBSTRING
+      ,[start_date]
+      ,[typology]
+      ,[typology_code]
+      ,[entity_id]
+      ,[entity_ts]
+      ,[validity_ts]
+ FROM [SMART_M_LISBON].[dbo].[EVENTOS]
+WHERE [ID_EVENT] = ''</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{03545D8C-53FB-4F70-B543-EEE498156241}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5810EF86-63E8-4668-AB49-A226DA4F234C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PARAM_LINHA">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81BA1E2B-D91E-4661-89CF-8585222EA460}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RUN_DATE">
+      <DTS:VariableValue
+        DTS:DataType="8">2020-03-03</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B3F3DF65-2C8A-441A-95FB-604A6290FACE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SOURCE_DIRECTORY">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B08C471C-20BF-40ED-A0F3-BFD81B53ACD8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT &#xA;'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,&#xA;ID_EVENT AS LS_INTERNAL_EVENT_ID, &#xA;'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_DISPLAY_CODE,&#xA;LAT_GROUP AS DISPLAY_LAT,&#xA;LONG_GROUP AS DISPLAY_LONG,&#xA;dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE,&#xA;CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) &lt; 4500 THEN 1 ELSE 0 END AS FLAG_NEAR_EV_vs_AC&#xA;FROM SMART_M_LISBON.dbo.EVENTOS_GROUP A&#xA;CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP B&#xA;WHERE A.EXTRACTION_DATE &gt; &quot; + @RUN_DATE + &quot; AND B.EXTRACTION_DATE &gt; &quot; + @RUN_DATE"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SOURCE_QUERY">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_DISPLAY_CODE,
+LAT_GROUP AS DISPLAY_LAT,
+LONG_GROUP AS DISPLAY_LONG,
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE,
+CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) &lt; 4500 THEN 1 ELSE 0 END AS FLAG_NEAR_EV_vs_AC
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP A
+CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP B
+WHERE A.EXTRACTION_DATE &gt; 2020-03-03 AND B.EXTRACTION_DATE &gt; 2020-03-03</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{a3c23e20-92e5-45d4-a756-64348538f3db}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FACT PUB_TRANSP_SHAPES">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES\Exec sp merge typed with final"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{087ea537-b2bf-47c0-b00d-3311e7bc1254}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Exec sp merge typed with final"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4CFFE6AE-3FF5-4B66-9BE8-5794D26D9F3A}"
+              SQLTask:SqlStatementSource="EXEC  sp_Merge__FACT_EVENTS_PUB_TRANSP_SHAPES" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3d6a1d9b-ef92-41a3-b949-eef8bb071afd}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Extract PUB_TRANSP_SHAPES"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES_typed]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="LS_EVENT_CODE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_EVENT_ID]"
+                          cachedDataType="i4"
+                          cachedName="LS_INTERNAL_EVENT_ID"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[EVENT_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="EVENT_DATE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[M_FLAG_NEAR_EV]"
+                          cachedDataType="i4"
+                          cachedName="M_FLAG_NEAR_EV"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[M_FLAG_NEAR_EV]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[M_FLAG_NEAR_EV]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[EVENT_CROWD_DISTANCE]"
+                          cachedDataType="r8"
+                          cachedName="EVENT_CROWD_DISTANCE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_PUBTRANSP_DISTANCE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[LS_STOP_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="28"
+                          cachedName="LS_STOP_CODE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_STOP_CODE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_STOP_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[STOP_LAT]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="STOP_LAT"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[STOP_LAT]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[STOP_LAT]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[STOP_LONG]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="STOP_LONG"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[STOP_LONG]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[STOP_LONG]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_SHAPE_LAT_1]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="DISPLAY_SHAPE_LAT_1"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LAT_1]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LAT_1]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_SHAPE_LONG_1]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="DISPLAY_SHAPE_LONG_1"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LONG_1]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LONG_1]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_SHAPE_LAT_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="DISPLAY_SHAPE_LAT_2"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LAT_2]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LAT_2]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_SHAPE_LONG_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="DISPLAY_SHAPE_LONG_2"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LONG_2]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LONG_2]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].Columns[LS_DISPLAY_SHAPE_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="28"
+                          cachedName="LS_DISPLAY_SHAPE_CODE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_CODE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_SHAPE_CODE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          dataType="i4"
+                          name="ID_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          name="M_FLAG_NEAR_EV" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_PUBTRANSP_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_PUBTRANSP_DISTANCE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_STOP_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_STOP_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[STOP_LAT]"
+                          dataType="r8"
+                          name="STOP_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[STOP_LONG]"
+                          dataType="r8"
+                          name="STOP_LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LAT_1]"
+                          dataType="r8"
+                          name="DISPLAY_SHAPE_LAT_1" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LONG_1]"
+                          dataType="r8"
+                          name="DISPLAY_SHAPE_LONG_1" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LAT_2]"
+                          dataType="r8"
+                          name="DISPLAY_SHAPE_LAT_2" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_LONG_2]"
+                          dataType="r8"
+                          name="DISPLAY_SHAPE_LONG_2" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_SHAPE_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="DISPLAY_SHAPE_CODE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+EVENT_DATE,
+'CR_' + CAST(STOP_ID AS VARCHAR(25))  LS_STOP_CODE,
+[STOP_LAT] AS [STOP_LAT],
+[STOP_LONG] AS [STOP_LONG],
+'CR_' + CAST(SHAPE_ID AS VARCHAR(25))  LS_DISPLAY_SHAPE_CODE,
+[SHAPE_LAT_1] AS [DISPLAY_SHAPE_LAT_1],
+[SHAPE_LONG_1] AS [DISPLAY_SHAPE_LONG_1],
+[SHAPE_LAT_2] AS [DISPLAY_SHAPE_LAT_2],
+[SHAPE_LONG_2] AS [DISPLAY_SHAPE_LONG_2],
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) AS EVENT_CROWD_DISTANCE,
+CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 500 
+			THEN 500
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 750 
+			THEN 750
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 1000 
+			THEN 1000
+	 ELSE
+			0 
+END AS M_FLAG_NEAR_EV
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP EV
+CROSS JOIN SMART_M_LISBON.[dbo].[CARRIS_SHAPES_GROUP] CR
+
+UNION
+
+SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+EVENT_DATE,
+'MT_' + CAST(STOP_ID AS VARCHAR(25))  LS_STOP_CODE,
+[STOP_LAT] AS DISPLAY_LAT,
+[STOP_LONG] AS DISPLAY_LONG,
+'MT_' + CAST(SHAPE_ID AS VARCHAR(25))  LS_DISPLAY_SHAPE_CODE,
+[SHAPE_LAT_1] AS [DISPLAY_SHAPE_LAT_1],
+[SHAPE_LONG_1] AS [DISPLAY_SHAPE_LONG_1],
+[SHAPE_LAT_2] AS [DISPLAY_SHAPE_LAT_2],
+[SHAPE_LONG_2] AS [DISPLAY_SHAPE_LONG_2],
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) AS EVENT_CROWD_DISTANCE,
+CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 500 
+			THEN 500
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 750 
+			THEN 750
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 1000 
+			THEN 1000
+	 ELSE
+			0 
+END AS M_FLAG_NEAR_EV
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP EV
+CROSS JOIN SMART_M_LISBON.[dbo].[METRO_SHAPES_GROUP] MT</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          length="8"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          name="LS_INTERNAL_EVENT_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                          name="EVENT_CROWD_DISTANCE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[M_FLAG_NEAR_EV]"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[M_FLAG_NEAR_EV]"
+                          name="M_FLAG_NEAR_EV"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_STOP_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_STOP_CODE]"
+                          length="28"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_STOP_CODE]"
+                          name="LS_STOP_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_SHAPE_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_SHAPE_CODE]"
+                          length="28"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_SHAPE_CODE]"
+                          name="LS_DISPLAY_SHAPE_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LAT_1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LAT_1]"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LAT_1]"
+                          name="DISPLAY_SHAPE_LAT_1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LONG_1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LONG_1]"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LONG_1]"
+                          name="DISPLAY_SHAPE_LONG_1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LAT_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LAT_2]"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LAT_2]"
+                          name="DISPLAY_SHAPE_LAT_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LONG_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LONG_2]"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_SHAPE_LONG_2]"
+                          name="DISPLAY_SHAPE_LONG_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[STOP_LAT]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[STOP_LAT]"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[STOP_LAT]"
+                          name="STOP_LAT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[STOP_LONG]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[STOP_LONG]"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].Columns[STOP_LONG]"
+                          name="STOP_LONG"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="8"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          name="LS_INTERNAL_EVENT_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_CROWD_DISTANCE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          name="M_FLAG_NEAR_EV" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_STOP_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_STOP_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_SHAPE_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_DISPLAY_SHAPE_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LAT_1]"
+                          dataType="wstr"
+                          length="50"
+                          name="DISPLAY_SHAPE_LAT_1" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LONG_1]"
+                          dataType="wstr"
+                          length="50"
+                          name="DISPLAY_SHAPE_LONG_1" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LAT_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="DISPLAY_SHAPE_LAT_2" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_SHAPE_LONG_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="DISPLAY_SHAPE_LONG_2" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[STOP_LAT]"
+                          dataType="wstr"
+                          length="50"
+                          name="STOP_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output].ExternalColumns[STOP_LONG]"
+                          dataType="wstr"
+                          length="50"
+                          name="STOP_LONG" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          name="LS_INTERNAL_EVENT_ID" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_STOP_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_STOP_CODE]"
+                          name="LS_STOP_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_SHAPE_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_SHAPE_CODE]"
+                          name="LS_DISPLAY_SHAPE_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LAT_1]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LAT_1]"
+                          name="DISPLAY_SHAPE_LAT_1" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LONG_1]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LONG_1]"
+                          name="DISPLAY_SHAPE_LONG_1" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LAT_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LAT_2]"
+                          name="DISPLAY_SHAPE_LAT_2" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LONG_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_SHAPE_LONG_2]"
+                          name="DISPLAY_SHAPE_LONG_2" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                          name="EVENT_CROWD_DISTANCE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[M_FLAG_NEAR_EV]"
+                          name="M_FLAG_NEAR_EV" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[STOP_LAT]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[STOP_LAT]"
+                          name="STOP_LAT" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[STOP_LONG]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Error Output].Columns[STOP_LONG]"
+                          name="STOP_LONG" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES.Paths[OLE DB Source Output]"
+                  endId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES\Truncate typed"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{cc8bc4cb-cd1f-4a33-bb16-104da285007a}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate typed"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4CFFE6AE-3FF5-4B66-9BE8-5794D26D9F3A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE&#xA;SMART_M_LISBON.dbo.FACT_EVENTS_PUB_TRANSP_SHAPES_typed" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES\Update Fact Table"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{6db4060b-f6e7-4191-ba29-811aebcca823}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Fact Table"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4CFFE6AE-3FF5-4B66-9BE8-5794D26D9F3A}"
+              SQLTask:SqlStatementSource="-------------- 500 update&#xA;UPDATE [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] &#xA;SET [LINE_FLAG_NEAR_EVENT] = 500&#xA;WHERE ID_EVENT IN (&#xA;SELECT F.ID_EVENT &#xA;  FROM [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] F&#xA;  INNER JOIN [AUX_PUB_TRANSP_SHAPES_STOPS] D ON F.LS_STOP_CODE = D.STOP_CODE&#xA;  GROUP BY F.LS_STOP_CODE,F.ID_EVENT , D.LINE_FULL_NAME&#xA;  HAVING SUM(M_FLAG_NEAR_EV)/COUNT(M_FLAG_NEAR_EV) = 500 AND SUM(M_FLAG_NEAR_EV) &gt; 0&#xA;&#xA;  )  AND LS_STOP_CODE IN (&#xA;  SELECT F.LS_STOP_CODE &#xA;  FROM [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] F&#xA;  INNER JOIN [AUX_PUB_TRANSP_SHAPES_STOPS] D ON F.LS_STOP_CODE = D.STOP_CODE&#xA;  GROUP BY F.LS_STOP_CODE,F.ID_EVENT , D.LINE_FULL_NAME&#xA;  HAVING SUM(M_FLAG_NEAR_EV)/COUNT(M_FLAG_NEAR_EV) = 500 AND SUM(M_FLAG_NEAR_EV) &gt; 0&#xA;&#xA;  )&#xA;  ------------- 750 update&#xA;    UPDATE [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] &#xA;SET [LINE_FLAG_NEAR_EVENT] = 750&#xA;WHERE ID_EVENT IN (&#xA;SELECT F.ID_EVENT &#xA;  FROM [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] F&#xA;  INNER JOIN [AUX_PUB_TRANSP_SHAPES_STOPS] D ON F.LS_STOP_CODE = D.STOP_CODE&#xA;  GROUP BY F.LS_STOP_CODE,F.ID_EVENT , D.LINE_FULL_NAME&#xA;  HAVING SUM(M_FLAG_NEAR_EV)/COUNT(M_FLAG_NEAR_EV) = 750 AND SUM(M_FLAG_NEAR_EV) &gt; 0&#xA;&#xA;  )  AND LS_STOP_CODE IN (&#xA;  SELECT F.LS_STOP_CODE &#xA;  FROM [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] F&#xA;  INNER JOIN [AUX_PUB_TRANSP_SHAPES_STOPS] D ON F.LS_STOP_CODE = D.STOP_CODE&#xA;  GROUP BY F.LS_STOP_CODE,F.ID_EVENT , D.LINE_FULL_NAME&#xA;  HAVING SUM(M_FLAG_NEAR_EV)/COUNT(M_FLAG_NEAR_EV) = 750 AND SUM(M_FLAG_NEAR_EV) &gt; 0&#xA;&#xA;  )&#xA;  ------------- 1000 update&#xA;  UPDATE [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] &#xA;SET [LINE_FLAG_NEAR_EVENT] = 1000&#xA;WHERE ID_EVENT IN (&#xA;SELECT F.ID_EVENT &#xA;  FROM [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] F&#xA;  INNER JOIN [AUX_PUB_TRANSP_SHAPES_STOPS] D ON F.LS_STOP_CODE = D.STOP_CODE&#xA;  GROUP BY F.LS_STOP_CODE,F.ID_EVENT , D.LINE_FULL_NAME&#xA;  HAVING SUM(M_FLAG_NEAR_EV)/COUNT(M_FLAG_NEAR_EV) = 1000 AND SUM(M_FLAG_NEAR_EV) &gt; 0&#xA;&#xA;  )  AND LS_STOP_CODE IN (&#xA;  SELECT F.LS_STOP_CODE &#xA;  FROM [SMART_M_LISBON].[dbo].[FACT_EVENTS_PUB_TRANSP_SHAPES] F&#xA;  INNER JOIN [AUX_PUB_TRANSP_SHAPES_STOPS] D ON F.LS_STOP_CODE = D.STOP_CODE&#xA;  GROUP BY F.LS_STOP_CODE,F.ID_EVENT , D.LINE_FULL_NAME&#xA;  HAVING SUM(M_FLAG_NEAR_EV)/COUNT(M_FLAG_NEAR_EV) = 1000 AND SUM(M_FLAG_NEAR_EV) &gt; 0&#xA;&#xA;  )&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{66af7a8c-1d73-4286-9551-084998a1c3b0}"
+          DTS:From="Package\Load FACT PUB_TRANSP_SHAPES\Truncate typed"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{a372dfdd-7f4d-48ad-b89c-adf18fdb5d47}"
+          DTS:From="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load FACT PUB_TRANSP_SHAPES\Exec sp merge typed with final" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT PUB_TRANSP_SHAPES.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{7AFC4D4B-7FF4-4D62-8B54-9B469737FA0A}"
+          DTS:From="Package\Load FACT PUB_TRANSP_SHAPES\Exec sp merge typed with final"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load FACT PUB_TRANSP_SHAPES\Update Fact Table" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load FACT PUB_TRANSP_STOPS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F73850C0-E6E8-4EC1-8A2D-EAEE228189D7}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FACT PUB_TRANSP_STOPS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT PUB_TRANSP_STOPS\Exec sp merge typed with final"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{8A93FA57-FCB0-490B-A639-64DAF6C6E2EA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Exec sp merge typed with final"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4CFFE6AE-3FF5-4B66-9BE8-5794D26D9F3A}"
+              SQLTask:SqlStatementSource="EXEC  sp_Merge__FACT_EVENTS_PUB_TRANSP_STOPS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{FEDAEE8C-4F51-4F73-A229-8735C898C5A7}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Extract PUB_TRANSP_STOPS"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[FACT_EVENTS_PUB_TRANSP_STOPS_typed]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="LS_EVENT_CODE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[LS_DISPLAY_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="28"
+                          cachedName="LS_DISPLAY_CODE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_DISPLAY_CODE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_LAT]"
+                          cachedDataType="r8"
+                          cachedName="DISPLAY_LAT"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LAT]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_LONG]"
+                          cachedDataType="r8"
+                          cachedName="DISPLAY_LONG"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LONG]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_EVENT_ID]"
+                          cachedDataType="i4"
+                          cachedName="LS_INTERNAL_EVENT_ID"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[EVENT_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="EVENT_DATE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[M_FLAG_NEAR_EV]"
+                          cachedDataType="i4"
+                          cachedName="M_FLAG_NEAR_EV"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[M_FLAG_NEAR_EV]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[M_FLAG_NEAR_EV]" />
+                        <inputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].Columns[EVENT_CROWD_DISTANCE]"
+                          cachedDataType="r8"
+                          cachedName="EVENT_CROWD_DISTANCE"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_PUBTRANSP_DISTANCE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          dataType="i4"
+                          name="ID_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_DISPLAY_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LAT]"
+                          dataType="r8"
+                          name="DISPLAY_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LONG]"
+                          dataType="r8"
+                          name="DISPLAY_LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          name="M_FLAG_NEAR_EV" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_PUBTRANSP_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_PUBTRANSP_DISTANCE" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+EVENT_DATE,
+'CR_' + CAST(STOP_ID AS VARCHAR(25))  LS_DISPLAY_CODE,
+[STOP_LAT] AS DISPLAY_LAT,
+[STOP_LONG] AS DISPLAY_LONG,
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) AS EVENT_CROWD_DISTANCE,
+CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 500 
+			THEN 500
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 750 
+			THEN 750
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 1000 
+			THEN 1000
+	 ELSE
+			0 
+END AS M_FLAG_NEAR_EV
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP EV
+CROSS JOIN SMART_M_LISBON.[dbo].[CARRIS_STOPS_GROUP] CR
+
+UNION
+
+SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+EVENT_DATE,
+'MT_' + CAST(STOP_ID AS VARCHAR(25))  LS_DISPLAY_CODE,
+[STOP_LAT] AS DISPLAY_LAT,
+[STOP_LONG] AS DISPLAY_LONG,
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) AS EVENT_CROWD_DISTANCE,
+CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 500 
+			THEN 500
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 750 
+			THEN 750
+	 WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[STOP_LAT],[STOP_LONG]) &lt; 1000 
+			THEN 1000
+	 ELSE
+			0 
+END AS M_FLAG_NEAR_EV
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP EV
+CROSS JOIN SMART_M_LISBON.[dbo].[METRO_STOPS_GROUP] MT</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          length="8"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          name="LS_INTERNAL_EVENT_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_CODE]"
+                          length="28"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]"
+                          name="LS_DISPLAY_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LAT]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]"
+                          name="DISPLAY_LAT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LONG]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]"
+                          name="DISPLAY_LONG"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                          name="EVENT_CROWD_DISTANCE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[M_FLAG_NEAR_EV]"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].Columns[M_FLAG_NEAR_EV]"
+                          name="M_FLAG_NEAR_EV"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="8"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          name="LS_INTERNAL_EVENT_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_DISPLAY_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LAT]"
+                          dataType="wstr"
+                          length="50"
+                          name="DISPLAY_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LONG]"
+                          dataType="wstr"
+                          length="50"
+                          name="DISPLAY_LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_CROWD_DISTANCE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output].ExternalColumns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          name="M_FLAG_NEAR_EV" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          name="LS_INTERNAL_EVENT_ID" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_CODE]"
+                          name="LS_DISPLAY_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LAT]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LAT]"
+                          name="DISPLAY_LAT" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LONG]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LONG]"
+                          name="DISPLAY_LONG" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                          name="EVENT_CROWD_DISTANCE" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[M_FLAG_NEAR_EV]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[M_FLAG_NEAR_EV]"
+                          name="M_FLAG_NEAR_EV" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS.Paths[OLE DB Source Output]"
+                  endId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT PUB_TRANSP_STOPS\Truncate typed"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{453ED522-10D8-4648-BA81-99F5E1356E5E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate typed"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4CFFE6AE-3FF5-4B66-9BE8-5794D26D9F3A}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE&#xA;SMART_M_LISBON.dbo.FACT_EVENTS_PUB_TRANSP_STOPS_typed" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT PUB_TRANSP_STOPS.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{10C8090F-6CCE-4A79-8D2F-21CBCF4FD932}"
+          DTS:From="Package\Load FACT PUB_TRANSP_STOPS\Truncate typed"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT PUB_TRANSP_STOPS.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{681153C8-EEFE-4113-9A51-4326161A605E}"
+          DTS:From="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load FACT PUB_TRANSP_STOPS\Exec sp merge typed with final" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Load FACT PUB_TRANSP_SHAPES\Exec sp merge typed with final"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES"
+          TopLeft="7.00000000000001,107.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load FACT PUB_TRANSP_SHAPES\Truncate typed"
+          TopLeft="42.5,5.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Load FACT PUB_TRANSP_SHAPES\Update Fact Table"
+          TopLeft="35,311.5" />
+        <EdgeLayout
+          Id="Package\Load FACT PUB_TRANSP_SHAPES.PrecedenceConstraints[Constraint]"
+          TopLeft="117.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FACT PUB_TRANSP_SHAPES.PrecedenceConstraints[Constraint 1]"
+          TopLeft="117.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FACT PUB_TRANSP_SHAPES.PrecedenceConstraints[Constraint 2]"
+          TopLeft="117.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="235,409"
+          Size="235,452"
+          Id="Package\Load FACT PUB_TRANSP_SHAPES"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Load FACT PUB_TRANSP_STOPS\Exec sp merge typed with final"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS"
+          TopLeft="9.50000000000003,107.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load FACT PUB_TRANSP_STOPS\Truncate typed"
+          TopLeft="42.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load FACT PUB_TRANSP_STOPS.PrecedenceConstraints[Constraint]"
+          TopLeft="117.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FACT PUB_TRANSP_STOPS.PrecedenceConstraints[Constraint 1]"
+          TopLeft="117.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="235,307"
+          Size="235,350"
+          Id="Package\Load FACT PUB_TRANSP_STOPS"
+          TopLeft="301.5,56.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="334,42"
+          Id="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed"
+          TopLeft="377,67" />
+        <NodeLayout
+          Size="362,42"
+          Id="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed"
+          TopLeft="391,264" />
+        <EdgeLayout
+          Id="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES.Paths[OLE DB Source Output]"
+          TopLeft="544,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28,155"
+              Start="0,0"
+              End="28,147.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,73.5"
+                    Point2="0,77.5"
+                    Point3="4,77.5" />
+                  <mssgle:LineSegment
+                    End="24,77.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24,77.5"
+                    Point2="28,77.5"
+                    Point3="28,81.5" />
+                  <mssgle:LineSegment
+                    End="28,147.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\DESTINATION FACT_EVENTS_PUB_TRANSP_SHAPES_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT PUB_TRANSP_SHAPES\Extract PUB_TRANSP_SHAPES\SOURCE FACT_EVENTS_PUB_TRANSP_SHAPES_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="357,42"
+          Id="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed"
+          TopLeft="391,264" />
+        <NodeLayout
+          Size="328,42"
+          Id="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed"
+          TopLeft="377,67" />
+        <EdgeLayout
+          Id="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS.Paths[OLE DB Source Output]"
+          TopLeft="541,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.5,155"
+              Start="0,0"
+              End="28.5,147.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,73.5"
+                    Point2="0,77.5"
+                    Point3="4,77.5" />
+                  <mssgle:LineSegment
+                    End="24.5,77.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.5,77.5"
+                    Point2="28.5,77.5"
+                    Point3="28.5,81.5" />
+                  <mssgle:LineSegment
+                    End="28.5,147.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\DESTINATION FACT_EVENTS_PUB_TRANSP_STOPS_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT PUB_TRANSP_STOPS\Extract PUB_TRANSP_STOPS\SOURCE FACT_EVENTS_PUB_TRANSP_STOPS_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1991 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/21/2020 1:28:18 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{DEC43D77-9B05-45C3-82D4-D75A912015D7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="LOAD_DISTANCES"
+  DTS:PackageType="5"
+  DTS:VersionBuild="63"
+  DTS:VersionGUID="{B3F417DE-2BBC-4F2A-9416-48F76F1FA126}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Dados Eventos]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{FCE7766C-5CD9-4812-BA5C-B5BED5C68A76}"
+      DTS:ObjectName="Dados Eventos">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[eventos20190508.json]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{F5B1C09B-A03B-41B3-84A2-57A00A7C4BCB}"
+      DTS:ObjectName="eventos20190508.json">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos\eventos20190508.json" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Events Files CM]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{2E12FA3A-B3D1-45EB-812C-36A5C6FFFBE8}"
+      DTS:ObjectName="Events Files CM">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::SOURCE_DIRECTORY] +"\\"+@[User::FILE]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_ONE"
+              DTS:DTSID="{1A1EE04E-A932-4FBE-A337-71C3C08DF9A7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_TWO"
+              DTS:DTSID="{A940EC3C-2B24-48CE-A3CE-1397FCF592D5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LATITUDE"
+              DTS:DTSID="{6B46C51E-27FF-4C97-B6B4-D92301F8C82D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LONGITUDE"
+              DTS:DTSID="{21226506-863E-436D-AFB9-8F69A0D12D02}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COVERAGE_RADIUS"
+              DTS:DTSID="{19350015-07C1-4B6F-8075-313B9AED403D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="POPULATION"
+              DTS:DTSID="{4C64F7FB-36DE-4F2D-B3F9-83AEC5EDBE1C}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{447DDC94-2915-4E30-904A-4716DD23FEB8}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mid_destination]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{34E684CF-BA0C-4783-8083-9924F9C2C31E}"
+      DTS:ObjectName="mid_destination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos\mid_destination\dest" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C478D500-E526-431A-BAF3-6BB9DA3A0A12}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENTS_LIST">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CD56298D-2C38-4829-85E0-DDB648F61558}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENT_A">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F4243095-024D-45E1-9295-A5AF5F08692C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;&#xA;  SELECT [ID_EVENT]&#xA;, [EVENT_DATE]      ,[address]&#xA;      ,[borough]&#xA;      ,[code]&#xA;      ,[date]&#xA;      ,[detail]&#xA;      ,[end_date]&#xA;      ,[estimated_visitors]&#xA;&#x9;  ,CASE WHEN RIGHT(POSITION, 20) = '\&quot;MultiLineString\&quot;}]}' THEN 1&#xA;&#x9;  &#x9;&#x9;WHEN RIGHT(POSITION, 10) = '\&quot;Point\&quot;}]}'           THEN 0&#xA;&#x9;&#x9;&#x9;&#x9;END AS POSITION_TIPO&#xA;      ,CASE WHEN RIGHT(POSITION, 20) = '\&quot;MultiLineString\&quot;}]}' THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(SUBSTRING(position, 63, LEN(position)-93), '[[[','('),'], [',','),', ', ' '),']]]',')'),'[',''),']','') AS VARCHAR(8000))&#xA;&#x9;&#x9;&#x9;WHEN RIGHT(POSITION, 10) = '\&quot;Point\&quot;}]}'           THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LEFT(RIGHT(POSITION, 48),28),' ',''),'[','('),']',')'),'[',''),']',''),',',' ') AS VARCHAR(50))  ELSE NULL &#xA;&#x9;&#x9;&#x9;&#x9;END AS  POSITION_SUBSTRING&#xA;      ,[start_date]&#xA;      ,[typology]&#xA;      ,[typology_code]&#xA;      ,[entity_id]&#xA;      ,[entity_ts]&#xA;      ,[validity_ts]&#xA; FROM [SMART_M_LISBON].[dbo].[EVENTOS]&#xA;WHERE [ID_EVENT] = '&quot; + @[User::EVENT_A] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENT_EXTRACTION_QUERY">
+      <DTS:VariableValue
+        DTS:DataType="8">
+  SELECT [ID_EVENT]
+, [EVENT_DATE]      ,[address]
+      ,[borough]
+      ,[code]
+      ,[date]
+      ,[detail]
+      ,[end_date]
+      ,[estimated_visitors]
+	  ,CASE WHEN RIGHT(POSITION, 20) = '"MultiLineString"}]}' THEN 1
+	  		WHEN RIGHT(POSITION, 10) = '"Point"}]}'           THEN 0
+				END AS POSITION_TIPO
+      ,CASE WHEN RIGHT(POSITION, 20) = '"MultiLineString"}]}' THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(SUBSTRING(position, 63, LEN(position)-93), '[[[','('),'], [',','),', ', ' '),']]]',')'),'[',''),']','') AS VARCHAR(8000))
+			WHEN RIGHT(POSITION, 10) = '"Point"}]}'           THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LEFT(RIGHT(POSITION, 48),28),' ',''),'[','('),']',')'),'[',''),']',''),',',' ') AS VARCHAR(50))  ELSE NULL 
+				END AS  POSITION_SUBSTRING
+      ,[start_date]
+      ,[typology]
+      ,[typology_code]
+      ,[entity_id]
+      ,[entity_ts]
+      ,[validity_ts]
+ FROM [SMART_M_LISBON].[dbo].[EVENTOS]
+WHERE [ID_EVENT] = ''</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CBA9A867-6F77-4C68-A4A0-C6C6C661DD6B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{33B6AB15-CA67-48CE-B703-D94ED598B60A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PARAM_LINHA">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{09B73B1A-1B26-4E13-B1CA-9D15799A4DF0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SOURCE_DIRECTORY">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Events vs CARRIS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{0f6b51aa-ce3e-4df0-a65b-5833b8745fda}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Events vs CARRIS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Events vs CARRIS\FACT DISTANCES"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FACT DISTANCES"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FACT_EVENT_CROWD_DISTANCE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs CARRIS\FACT DISTANCES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="LS_EVENT_CODE"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_EVENT_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_EVENT_ID"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_CROWD_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="28"
+                      cachedName="LS_CROWD_CODE"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_CROWD_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_CROWD_ID"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[EVENT_CROWD_DISTANCE]"
+                      cachedDataType="r8"
+                      cachedName="EVENT_CROWD_DISTANCE"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[ID_DISTANCE]"
+                      dataType="i4"
+                      name="ID_DISTANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      dataType="r4"
+                      name="DIST_EVENT_VS_CROWD" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs CARRIS\FACT DISTANCES.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs CARRIS\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs CARRIS\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Events vs CARRIS\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_CROWD_CODE,
+[ID_CROWD_GROUP] AS LS_INTERNAL_CROWD_ID, 
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP
+CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs CARRIS\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      length="8"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      length="28"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      name="EVENT_CROWD_DISTANCE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Events vs CARRIS.Paths[OLE DB Source Output]"
+              endId="Package\Load Events vs CARRIS\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Events vs CARRIS\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Events vs Crowd Distance"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D2A4A4CE-D44A-4DF1-9DE0-39E6EEABD133}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Events vs Crowd Distance"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Events vs Crowd Distance\FACT DISTANCES"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FACT DISTANCES"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FACT_EVENT_CROWD_DISTANCE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="LS_EVENT_CODE"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_EVENT_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_EVENT_ID"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_CROWD_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="28"
+                      cachedName="LS_CROWD_CODE"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_CROWD_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_CROWD_ID"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[EVENT_CROWD_DISTANCE]"
+                      cachedDataType="r8"
+                      cachedName="EVENT_CROWD_DISTANCE"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[ID_DISTANCE]"
+                      dataType="i4"
+                      name="ID_DISTANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      dataType="r4"
+                      name="DIST_EVENT_VS_CROWD" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Events vs Crowd Distance\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_CROWD_CODE,
+[ID_CROWD_GROUP] AS LS_INTERNAL_CROWD_ID, 
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP
+CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs Crowd Distance\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      length="8"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      length="28"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      name="EVENT_CROWD_DISTANCE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Events vs Crowd Distance.Paths[OLE DB Source Output]"
+              endId="Package\Load Events vs Crowd Distance\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Events vs Crowd Distance\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Events vs METRO"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{bcb89020-2317-4eca-bd98-f68dc6e2b2d6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Events vs METRO"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Events vs METRO\FACT DISTANCES"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FACT DISTANCES"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FACT_EVENT_CROWD_DISTANCE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs METRO\FACT DISTANCES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="LS_EVENT_CODE"
+                      externalMetadataColumnId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_EVENT_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_EVENT_ID"
+                      externalMetadataColumnId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_CROWD_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="28"
+                      cachedName="LS_CROWD_CODE"
+                      externalMetadataColumnId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_CROWD_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_CROWD_ID"
+                      externalMetadataColumnId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[EVENT_CROWD_DISTANCE]"
+                      cachedDataType="r8"
+                      cachedName="EVENT_CROWD_DISTANCE"
+                      externalMetadataColumnId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[ID_DISTANCE]"
+                      dataType="i4"
+                      name="ID_DISTANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      dataType="r4"
+                      name="DIST_EVENT_VS_CROWD" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs METRO\FACT DISTANCES.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs METRO\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs METRO\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Events vs METRO\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_CROWD_CODE,
+[ID_CROWD_GROUP] AS LS_INTERNAL_CROWD_ID, 
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP
+CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs METRO\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      length="8"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      length="28"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      name="EVENT_CROWD_DISTANCE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Events vs METRO.Paths[OLE DB Source Output]"
+              endId="Package\Load Events vs METRO\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Events vs METRO\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Events vs WAZE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{d0ad7a44-2faa-439d-a913-d724ee371983}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Events vs WAZE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Events vs WAZE\FACT DISTANCES"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FACT DISTANCES"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FACT_EVENT_CROWD_DISTANCE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs WAZE\FACT DISTANCES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="LS_EVENT_CODE"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_EVENT_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_EVENT_ID"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_CROWD_CODE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="28"
+                      cachedName="LS_CROWD_CODE"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]" />
+                    <inputColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_CROWD_ID]"
+                      cachedDataType="i4"
+                      cachedName="LS_INTERNAL_CROWD_ID"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]" />
+                    <inputColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].Columns[EVENT_CROWD_DISTANCE]"
+                      cachedDataType="r8"
+                      cachedName="EVENT_CROWD_DISTANCE"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[ID_DISTANCE]"
+                      dataType="i4"
+                      name="ID_DISTANCE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input].ExternalColumns[DIST_EVENT_VS_CROWD]"
+                      dataType="r4"
+                      name="DIST_EVENT_VS_CROWD" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs WAZE\FACT DISTANCES.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs WAZE\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs WAZE\FACT DISTANCES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Events vs WAZE\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_CROWD_CODE,
+[ID_CROWD_GROUP] AS LS_INTERNAL_CROWD_ID, 
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP
+CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Events vs WAZE\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      length="8"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      length="28"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="LS_EVENT_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      name="LS_CROWD_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      name="EVENT_CROWD_DISTANCE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                      name="LS_EVENT_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                      name="LS_INTERNAL_EVENT_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="28"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_CROWD_CODE]"
+                      name="LS_CROWD_CODE" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_CROWD_ID]"
+                      name="LS_INTERNAL_CROWD_ID" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      dataType="r8"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[EVENT_CROWD_DISTANCE]"
+                      name="EVENT_CROWD_DISTANCE" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Events vs WAZE.Paths[OLE DB Source Output]"
+              endId="Package\Load Events vs WAZE\FACT DISTANCES.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Events vs WAZE\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="226,42"
+          Id="Package\Load Events vs Crowd Distance"
+          TopLeft="67,98" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Load Events vs CARRIS"
+          TopLeft="370,99" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Load Events vs METRO"
+          TopLeft="655,94" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Load Events vs WAZE"
+          TopLeft="948,92" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Events vs Crowd Distance">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load Events vs Crowd Distance\OLE DB Source"
+          TopLeft="353,102" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load Events vs Crowd Distance\FACT DISTANCES"
+          TopLeft="344,197" />
+        <EdgeLayout
+          Id="Package\Load Events vs Crowd Distance.Paths[OLE DB Source Output]"
+          TopLeft="426.5,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Events vs Crowd Distance\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Events vs Crowd Distance\FACT DISTANCES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Events vs CARRIS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load Events vs CARRIS\FACT DISTANCES"
+          TopLeft="344,197" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load Events vs CARRIS\OLE DB Source"
+          TopLeft="353,102" />
+        <EdgeLayout
+          Id="Package\Load Events vs CARRIS.Paths[OLE DB Source Output]"
+          TopLeft="426.5,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load Events vs METRO">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load Events vs METRO\FACT DISTANCES"
+          TopLeft="344,197" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load Events vs METRO\OLE DB Source"
+          TopLeft="353,102" />
+        <EdgeLayout
+          Id="Package\Load Events vs METRO.Paths[OLE DB Source Output]"
+          TopLeft="426.5,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load Events vs WAZE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Load Events vs WAZE\FACT DISTANCES"
+          TopLeft="344,197" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load Events vs WAZE\OLE DB Source"
+          TopLeft="353,102" />
+        <EdgeLayout
+          Id="Package\Load Events vs WAZE.Paths[OLE DB Source Output]"
+          TopLeft="426.5,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

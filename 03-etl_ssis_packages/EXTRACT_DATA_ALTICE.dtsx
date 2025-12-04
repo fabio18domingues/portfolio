@@ -1,0 +1,1786 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/14/2020 10:11:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{90E19973-8E3B-450D-AD19-4011D8EC0FE4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="EXTRACT_DATA_ALTICE"
+  DTS:PackageType="5"
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{9EDE4E57-DFC2-4498-9CFA-6B0303A60683}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Altice Flat File extractions]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{458A9CD4-07D1-4B37-BFD1-2804B70A7D33}"
+      DTS:ObjectName="Altice Flat File extractions">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::SOURCE_DIRECTORY] +"\\"+@[User::FILE]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Altice\Altice_20191013_20191027\">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_ONE"
+              DTS:DTSID="{F3B6959D-2A01-4580-9DE6-608A2245E7D3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_TWO"
+              DTS:DTSID="{56CD30C2-ACAF-4809-ACC8-BC4A970458BF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LATITUDE"
+              DTS:DTSID="{9C9AC2F5-EFF4-411C-9F17-8DA2B79F0C6D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LONGITUDE"
+              DTS:DTSID="{17F4B116-C7D3-4627-AD17-3513308AD18F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COVERAGE_RADIUS"
+              DTS:DTSID="{1B06B460-365D-4533-BAA0-F88801237D08}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000A_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="POPULATION"
+              DTS:DTSID="{8C82BBE0-6153-4D7B-B819-E7360DDAA4AD}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5EE50888-A0AD-484D-A09B-78CB49257593}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C55732D-50E9-4731-B095-0F6F2BF4E97C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATE_TIME">
+      <DTS:VariableValue
+        DTS:DataType="7">1/21/2020 12:54:39 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C86B5414-E78F-4F48-AC0F-48644AC86CE4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DE0B5E6B-EFC3-4405-A0AD-52DC6251E75C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;C:\\Users\\fabiodomingues\\Documents\\Mestrado\\TeseWorkProject\\Dados Altice\\Altice_20191013_20191027&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SOURCE_DIRECTORY">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Altice\Altice_20191013_20191027</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Altice FIle"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{16509698-0044-4D59-B636-2B843DA86806}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Altice FIle">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{34A1EC55-45BB-486C-B382-C562863BA9C3}"
+        DTS:ObjectName="{34A1EC55-45BB-486C-B382-C562863BA9C3}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Altice\Altice_20191013_20191027" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Altice FIle\EXTRACT AND LOAD"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{22DBD274-965E-40CF-9FD1-DD95C30C8351}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXTRACT AND LOAD"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Create Substring Coordinates and Time"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Inputs[Derived Column Input].Columns[LATITUDE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LATITUDE"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LATITUDE]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Inputs[Derived Column Input].Columns[LONGITUDE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LONGITUDE"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LONGITUDE]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[LAT]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[LAT]"
+                          name="LAT"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LEFT](#{Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LATITUDE]},8)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LEFT(LATITUDE,8)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[LONG]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[LONG]"
+                          name="LONG"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LEFT](#{Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LONGITUDE]},8)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LEFT(LONGITUDE,8)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[COD_DATETIME]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[COD_DATETIME]"
+                          name="COD_DATETIME"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,50)[SUBSTRING](@[User::FILE],8,14)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,50)SUBSTRING(@[User::FILE],8,14)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Crowd Location"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[CROWD_LOCATION]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[LAT]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="LAT"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LAT]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[LAT]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[LONG]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="LONG"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LONG]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[LONG]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[COD_DATETIME]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="COD_DATETIME"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[COD_DATETIME]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output].Columns[COD_DATETIME]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[LATITUDE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LATITUDE"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LATITUDE]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LATITUDE]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[LONGITUDE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="LONGITUDE"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LONGITUDE]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LONGITUDE]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[ID_ONE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ID_ONE"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[ID_ONE]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[ID_ONE]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[ID_TWO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ID_TWO"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[ID_TWO]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[ID_TWO]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[COVERAGE_RADIUS]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="COVERAGE_RADIUS"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[COVERAGE_RADIUS]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[COVERAGE_RADIUS]" />
+                        <inputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].Columns[POPULATION]"
+                          cachedDataType="i8"
+                          cachedName="POPULATION"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[POPULATION]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[POPULATION]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LATITUDE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LATITUDE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LONGITUDE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LONGITUDE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LAT]"
+                          dataType="r8"
+                          name="LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[LONG]"
+                          dataType="r8"
+                          name="LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[ID_CROWD]"
+                          dataType="i4"
+                          name="ID_CROWD" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[COD_DATETIME]"
+                          dataType="wstr"
+                          length="50"
+                          name="COD_DATETIME" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[ID_ONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ID_ONE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[ID_TWO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ID_TWO" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[POPULATION]"
+                          dataType="i8"
+                          name="POPULATION" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input].ExternalColumns[COVERAGE_RADIUS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="COVERAGE_RADIUS" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="2070"
+                  name="Extract Altice Files"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Altice Flat File extractions]"
+                      connectionManagerRefId="Package.ConnectionManagers[Altice Flat File extractions]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[ID_ONE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[ID_ONE]"
+                          length="50"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[ID_ONE]"
+                          name="ID_ONE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[ID_TWO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[ID_TWO]"
+                          length="50"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[ID_TWO]"
+                          name="ID_TWO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LATITUDE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[LATITUDE]"
+                          length="50"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LATITUDE]"
+                          name="LATITUDE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LONGITUDE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[LONGITUDE]"
+                          length="50"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[LONGITUDE]"
+                          name="LONGITUDE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[COVERAGE_RADIUS]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[COVERAGE_RADIUS]"
+                          length="50"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[COVERAGE_RADIUS]"
+                          name="COVERAGE_RADIUS"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[POPULATION]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[POPULATION]"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].Columns[POPULATION]"
+                          name="POPULATION"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[ID_ONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ID_ONE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[ID_TWO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ID_TWO" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[LATITUDE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LATITUDE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[LONGITUDE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="LONGITUDE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[COVERAGE_RADIUS]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="COVERAGE_RADIUS" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output].ExternalColumns[POPULATION]"
+                          dataType="i8"
+                          name="POPULATION" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Altice FIle\EXTRACT AND LOAD.Paths[Derived Column Output]"
+                  endId="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Altice FIle\EXTRACT AND LOAD.Paths[Flat File Source Output]"
+                  endId="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{7200A6C6-CF6B-4D47-9DBF-217791DAF0D1}"
+          DTS:ObjectName="{7200A6C6-CF6B-4D47-9DBF-217791DAF0D1}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FILE" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\INSERT INTO CROWD LOCATION GROUP"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7B19EA6C-4188-4569-A7F0-C16B6B2EB184}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="INSERT INTO CROWD LOCATION GROUP"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="CROWD LOCATION"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT SUM(POPULATION) AS CONCENTRATION
+	  ,AVG(CAST(ABS(CAST(COVERAGE_RADIUS AS FLOAT)) AS INT)) AS AVERAGE_COVERAGE
+      ,LAT
+      ,LONG
+      ,COD_DATETIME
+      ,SUBSTRING([COD_DATETIME],1,4) + '-' + SUBSTRING([COD_DATETIME],5,2) + '-' + SUBSTRING([COD_DATETIME],7,2) + ' ' + SUBSTRING([COD_DATETIME],9,2) + ':' 
++ SUBSTRING([COD_DATETIME],11,1)+ '0:00'AS DATE_TIME
+	  ,SUBSTRING([COD_DATETIME],1,4) + '-' + SUBSTRING([COD_DATETIME],5,2) + '-' + SUBSTRING([COD_DATETIME],7,2) AS DATE
+	  ,SUBSTRING([COD_DATETIME],9,2) + ':' + SUBSTRING([COD_DATETIME],11,1)+ '0:00'AS TIME
+  FROM [SMART_M_LISBON].[dbo].[CROWD_LOCATION]
+    GROUP BY    LAT ,LONG,COD_DATETIME
+ORDER BY COD_DATETIME</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[LAT]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[LAT]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[LAT]"
+                      name="LAT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[LONG]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[LONG]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[LONG]"
+                      name="LONG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[CONCENTRATION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[CONCENTRATION]"
+                      length="50"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[CONCENTRATION]"
+                      name="CONCENTRATION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[COD_DATETIME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[COD_DATETIME]"
+                      length="50"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[COD_DATETIME]"
+                      name="COD_DATETIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE_TIME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[DATE_TIME]"
+                      length="19"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE_TIME]"
+                      name="DATE_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[DATE]"
+                      length="10"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE]"
+                      name="DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[TIME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[TIME]"
+                      length="8"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[TIME]"
+                      name="TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[AVERAGE_COVERAGE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_COVERAGE]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[AVERAGE_COVERAGE]"
+                      name="AVERAGE_COVERAGE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[LAT]"
+                      dataType="r8"
+                      name="LAT" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[LONG]"
+                      dataType="r8"
+                      name="LONG" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[CONCENTRATION]"
+                      dataType="i8"
+                      name="CONCENTRATION" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[COD_DATETIME]"
+                      dataType="wstr"
+                      length="50"
+                      name="COD_DATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[DATE_TIME]"
+                      dataType="wstr"
+                      length="19"
+                      name="DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[DATE]"
+                      dataType="wstr"
+                      length="10"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[TIME]"
+                      dataType="wstr"
+                      length="8"
+                      name="TIME" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_COVERAGE]"
+                      dataType="i4"
+                      name="AVERAGE_COVERAGE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[LAT]"
+                      dataType="r8"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[LAT]"
+                      name="LAT" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[AVERAGE_COVERAGE]"
+                      dataType="i4"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[AVERAGE_COVERAGE]"
+                      name="AVERAGE_COVERAGE" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[LONG]"
+                      dataType="r8"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[LONG]"
+                      name="LONG" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[CONCENTRATION]"
+                      dataType="i8"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[CONCENTRATION]"
+                      name="CONCENTRATION" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[COD_DATETIME]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[COD_DATETIME]"
+                      name="COD_DATETIME" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[DATE_TIME]"
+                      dataType="wstr"
+                      length="19"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[DATE_TIME]"
+                      name="DATE_TIME" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[DATE]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[DATE]"
+                      name="DATE" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[TIME]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[TIME]"
+                      name="TIME" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="CROWD LOCATION GROUP"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[CROWD_LOCATION_GROUP]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[LAT]"
+                      cachedDataType="r8"
+                      cachedName="LAT"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[LAT_GROUP]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[LAT]" />
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[LONG]"
+                      cachedDataType="r8"
+                      cachedName="LONG"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[LONG_GROUP]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[LONG]" />
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[CONCENTRATION]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CONCENTRATION"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[CONCENTRATION]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[CONCENTRATION]" />
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[COD_DATETIME]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="COD_DATETIME"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[COD_DATETIME]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[COD_DATETIME]" />
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[DATE_TIME]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="DATE_TIME"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[DATE_TIME]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE_TIME]" />
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[DATE]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DATE"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[CROWD_DATE]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE]" />
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[TIME]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="TIME"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[CROWD_TIME]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[TIME]" />
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].Columns[AVERAGE_COVERAGE]"
+                      cachedDataType="i4"
+                      cachedName="AVERAGE_COVERAGE"
+                      externalMetadataColumnId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_COVERAGE]"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[AVERAGE_COVERAGE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[ID_CROWD_GROUP]"
+                      dataType="i4"
+                      name="ID_CROWD_GROUP" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[LAT_GROUP]"
+                      dataType="r8"
+                      name="LAT_GROUP" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[LONG_GROUP]"
+                      dataType="r8"
+                      name="LONG_GROUP" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[CONCENTRATION]"
+                      dataType="i4"
+                      name="CONCENTRATION" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[COD_DATETIME]"
+                      dataType="i8"
+                      name="COD_DATETIME" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[DATE_TIME]"
+                      dataType="dbTimeStamp"
+                      name="DATE_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[CROWD_DATE]"
+                      dataType="dbDate"
+                      name="CROWD_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[CROWD_TIME]"
+                      dataType="dbTime2"
+                      name="CROWD_TIME"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_COVERAGE]"
+                      dataType="i4"
+                      name="AVERAGE_COVERAGE" />
+                    <externalMetadataColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input].ExternalColumns[EXTRACTION_DATE]"
+                      dataType="dbDate"
+                      name="EXTRACTION_DATE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DATE_TIME COLUMN"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Inputs[Derived Column Input].Columns[DATE_TIME]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="DATE_TIME"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE_TIME]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)#{Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE_TIME]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)DATE_TIME</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Inputs[Derived Column Input].Columns[DATE]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DATE"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBDATE)#{Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[DATE]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBDATE)DATE</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Inputs[Derived Column Input].Columns[TIME]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="TIME"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[TIME]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIME)#{Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output].Columns[TIME]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIME)TIME</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\INSERT INTO CROWD LOCATION GROUP.Paths[Derived Column Output]"
+              endId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\INSERT INTO CROWD LOCATION GROUP.Paths[OLE DB Source Output]"
+              endId="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpar Tabela CROWD LOCATION"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{60327B19-A48C-4CD0-8185-3157A7ED9BBD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpar Tabela CROWD LOCATION"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5EE50888-A0AD-484D-A09B-78CB49257593}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE &#xA;[SMART_M_LISBON].[dbo].[CROWD_LOCATION]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpar Tabela CROWD LOCATION GROUP"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{adf82401-6377-4d4d-9103-5d09ff38ee99}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpar Tabela CROWD LOCATION GROUP"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5EE50888-A0AD-484D-A09B-78CB49257593}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE &#xA;[SMART_M_LISBON].[dbo].[CROWD_LOCATION_GROUP]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\UPDATE EXTRACTION DATE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{8b48b1a9-f7e9-4e7c-9734-66a4e599cfd3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="UPDATE EXTRACTION DATE"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5EE50888-A0AD-484D-A09B-78CB49257593}"
+          SQLTask:SqlStatementSource="UPDATE CROWD_LOCATION_GROUP&#xA;SET EXTRACTION_DATE = GETDATE()" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B0FAD930-53CA-440A-B18A-E99CF68199F3}"
+      DTS:From="Package\Limpar Tabela CROWD LOCATION"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Altice FIle" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{4114070E-5CB6-4CB0-B24D-8028AD98BD99}"
+      DTS:From="Package\Altice FIle"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Limpar Tabela CROWD LOCATION GROUP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{BA954B0E-8E25-429B-8902-EF47FD8D41E5}"
+      DTS:From="Package\Limpar Tabela CROWD LOCATION GROUP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\INSERT INTO CROWD LOCATION GROUP" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{60BCB99A-E8C9-4733-9F80-1F04DF8C6C43}"
+      DTS:From="Package\INSERT INTO CROWD LOCATION GROUP"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\UPDATE EXTRACTION DATE" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Altice FIle\EXTRACT AND LOAD"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="200,103"
+          Size="200,146"
+          Id="Package\Altice FIle"
+          TopLeft="54,107.5" />
+        <NodeLayout
+          Size="275,42"
+          Id="Package\INSERT INTO CROWD LOCATION GROUP"
+          TopLeft="5.50000000000006,415.5" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Limpar Tabela CROWD LOCATION"
+          TopLeft="27,5.5" />
+        <NodeLayout
+          Size="297,42"
+          Id="Package\Limpar Tabela CROWD LOCATION GROUP"
+          TopLeft="5.50000000000006,313.5" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\UPDATE EXTRACTION DATE"
+          TopLeft="43.5000000000001,494.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="150.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="154,253.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="154,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11,60"
+              Start="0,0"
+              End="-11,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-7,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7,30"
+                    Point2="-11,30"
+                    Point3="-11,34" />
+                  <mssgle:LineSegment
+                    End="-11,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="146.5,457.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Altice FIle\EXTRACT AND LOAD">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location"
+          TopLeft="60,209.5" />
+        <NodeLayout
+          Size="264,42"
+          Id="Package\Altice FIle\EXTRACT AND LOAD\Create Substring Coordinates and Time"
+          TopLeft="5.5,107.5" />
+        <EdgeLayout
+          Id="Package\Altice FIle\EXTRACT AND LOAD.Paths[Derived Column Output]"
+          TopLeft="137.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Altice FIle\EXTRACT AND LOAD\Extract Altice Files"
+          TopLeft="55,5.5" />
+        <EdgeLayout
+          Id="Package\Altice FIle\EXTRACT AND LOAD.Paths[Flat File Source Output]"
+          TopLeft="137.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Altice FIle\EXTRACT AND LOAD\Crowd Location">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\INSERT INTO CROWD LOCATION GROUP">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224,42"
+          Id="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\INSERT INTO CROWD LOCATION GROUP\DATE_TIME COLUMN"
+          TopLeft="22,107.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION"
+          TopLeft="27,5.5" />
+        <EdgeLayout
+          Id="Package\INSERT INTO CROWD LOCATION GROUP.Paths[OLE DB Source Output]"
+          TopLeft="117.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\INSERT INTO CROWD LOCATION GROUP.Paths[Derived Column Output]"
+          TopLeft="117.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION GROUP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\INSERT INTO CROWD LOCATION GROUP\CROWD LOCATION">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

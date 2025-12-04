@@ -1,0 +1,938 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/14/2020 10:11:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{B1469D8A-2F7A-4759-A7BF-46866CD8D469}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="EXTRACT_PREDICT_ALTICE_old"
+  DTS:PackageType="5"
+  DTS:VersionBuild="95"
+  DTS:VersionGUID="{C14B96C9-EFB6-42E7-9086-B218AFE33541}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{825A8574-4856-4AD0-90D7-E0C4BE3BB290}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::FULL_PATH]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Altice\Prediction Files\5_Crowd_Management\Oct_21\ZonalStats_KernelDensity_Project_XY_cmlgeo_20191021000000.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{36AE5BF1-E42D-4551-A278-B579EC947472}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{48918EF7-2285-4E17-9211-287104E02DDF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DATE_TIME">
+      <DTS:VariableValue
+        DTS:DataType="7">1/21/2020 12:54:39 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{17174917-9095-4A50-B991-308942C77497}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE">
+      <DTS:VariableValue
+        DTS:DataType="8">ZonalStats_KernelDensity_Project_XY_cmlgeo_20191021000000.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FE26DB80-9B3E-49BA-B30B-A16ECBE6EF87}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::SOURCE_DIRECTORY] + &quot;\\&quot; + @[User::FILE]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FULL_PATH">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Altice\Prediction Files\5_Crowd_Management\Oct_21\ZonalStats_KernelDensity_Project_XY_cmlgeo_20191021000000.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{09ACD444-0126-45BE-BC99-1D58C5A0674C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;C:\\Users\\fabiodomingues\\Documents\\Mestrado\\TeseWorkProject\\Dados Altice\\Prediction Files\\5_Crowd_Management\\Oct_21&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SOURCE_DIRECTORY">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Altice\Prediction Files\5_Crowd_Management\Oct_21</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Altice FILE"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{C290D616-8FF1-477C-8BED-EBD257A83151}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Altice FILE">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{68E83B54-4EA9-445F-87AB-4B4B4CE5F19D}"
+        DTS:ObjectName="{68E83B54-4EA9-445F-87AB-4B4B4CE5F19D}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::SOURCE_DIRECTORY]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Altice\Prediction Files\5_Crowd_Management\Oct_21" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Altice FILE\EXTRACT AND LOAD"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{2121148a-3577-44dc-8eb1-e675ee68e838}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXTRACT AND LOAD"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Create Substring Date and Time"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Output].Columns[COD_DATETIME]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Output].Columns[COD_DATETIME]"
+                          name="COD_DATETIME"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_WSTR,50)[SUBSTRING](@[User::FILE],44,14)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,50)SUBSTRING(@[User::FILE],44,14)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">ZonalStats_KernelDensity_Projec$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT *
+FROM ZonalStats_KernelDensity_Projec$</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[OBJECTID]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[OBJECTID]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[OBJECTID]"
+                          name="OBJECTID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[GRID_ID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[GRID_ID]"
+                          length="255"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[GRID_ID]"
+                          name="GRID_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[ZONE_CODE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[ZONE_CODE]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[ZONE_CODE]"
+                          name="ZONE_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[COUNT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[COUNT]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[COUNT]"
+                          name="COUNT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[AREA]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[AREA]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[AREA]"
+                          name="AREA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MIN]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[MIN]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MIN]"
+                          name="MIN"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MAX]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[MAX]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MAX]"
+                          name="MAX"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[RANGE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[RANGE]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[RANGE]"
+                          name="RANGE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MEAN]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[MEAN]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MEAN]"
+                          name="MEAN"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[STD]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[STD]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[STD]"
+                          name="STD"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[SUM]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[SUM]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[SUM]"
+                          name="SUM"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[OBJECTID]"
+                          dataType="r8"
+                          name="OBJECTID" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[GRID_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="GRID_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[ZONE_CODE]"
+                          dataType="r8"
+                          name="ZONE_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[COUNT]"
+                          dataType="r8"
+                          name="COUNT" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[AREA]"
+                          dataType="r8"
+                          name="AREA" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[MIN]"
+                          dataType="r8"
+                          name="MIN" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[MAX]"
+                          dataType="r8"
+                          name="MAX" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[RANGE]"
+                          dataType="r8"
+                          name="RANGE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[MEAN]"
+                          dataType="r8"
+                          name="MEAN" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[STD]"
+                          dataType="r8"
+                          name="STD" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].ExternalColumns[SUM]"
+                          dataType="r8"
+                          name="SUM" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[OBJECTID]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[OBJECTID]"
+                          name="OBJECTID" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[GRID_ID]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[GRID_ID]"
+                          name="GRID_ID" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[ZONE_CODE]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[ZONE_CODE]"
+                          name="ZONE_CODE" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[COUNT]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[COUNT]"
+                          name="COUNT" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[AREA]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[AREA]"
+                          name="AREA" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[MIN]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[MIN]"
+                          name="MIN" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[MAX]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[MAX]"
+                          name="MAX" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[RANGE]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[RANGE]"
+                          name="RANGE" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[MEAN]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[MEAN]"
+                          name="MEAN" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[STD]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[STD]"
+                          name="STD" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[SUM]"
+                          dataType="r8"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[SUM]"
+                          name="SUM" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Predict Crowd"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[PREDICT_CROWD_OLD]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[OBJECTID]"
+                          cachedDataType="r8"
+                          cachedName="OBJECTID"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[OBJECTID]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[OBJECTID]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[GRID_ID]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="GRID_ID"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[GRID_ID]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[GRID_ID]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[ZONE_CODE]"
+                          cachedDataType="r8"
+                          cachedName="ZONE_CODE"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[ZONE_CODE]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[ZONE_CODE]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[COUNT]"
+                          cachedDataType="r8"
+                          cachedName="COUNT"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[COUNT]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[COUNT]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[AREA]"
+                          cachedDataType="r8"
+                          cachedName="AREA"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[AREA]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[AREA]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[MIN]"
+                          cachedDataType="r8"
+                          cachedName="MIN"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[MIN]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MIN]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[MAX]"
+                          cachedDataType="r8"
+                          cachedName="MAX"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[MAX]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MAX]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[RANGE]"
+                          cachedDataType="r8"
+                          cachedName="RANGE"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[RANGE]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[RANGE]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[MEAN]"
+                          cachedDataType="r8"
+                          cachedName="MEAN"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[MEAN]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[MEAN]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[STD]"
+                          cachedDataType="r8"
+                          cachedName="STD"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[STD]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[STD]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[SUM]"
+                          cachedDataType="r8"
+                          cachedName="SUM"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[SUM]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output].Columns[SUM]" />
+                        <inputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].Columns[COD_DATETIME]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="COD_DATETIME"
+                          externalMetadataColumnId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[COD_DATETIME]"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Output].Columns[COD_DATETIME]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[PREDICT_CROWD_ID]"
+                          dataType="i8"
+                          name="PREDICT_CROWD_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[OBJECTID]"
+                          dataType="i8"
+                          name="OBJECTID" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[GRID_ID]"
+                          dataType="wstr"
+                          length="255"
+                          name="GRID_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[ZONE_CODE]"
+                          dataType="wstr"
+                          length="10"
+                          name="ZONE_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[COUNT]"
+                          dataType="i4"
+                          name="COUNT" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[AREA]"
+                          dataType="i8"
+                          name="AREA" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[MIN]"
+                          dataType="r8"
+                          name="MIN" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[MAX]"
+                          dataType="r8"
+                          name="MAX" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[RANGE]"
+                          dataType="r8"
+                          name="RANGE" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[MEAN]"
+                          dataType="r8"
+                          name="MEAN" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[STD]"
+                          dataType="r8"
+                          name="STD" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[SUM]"
+                          dataType="r8"
+                          name="SUM" />
+                        <externalMetadataColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input].ExternalColumns[COD_DATETIME]"
+                          dataType="wstr"
+                          length="50"
+                          name="COD_DATETIME" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Altice FILE\EXTRACT AND LOAD.Paths[Derived Column Output]"
+                  endId="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Altice FILE\EXTRACT AND LOAD.Paths[Excel Source Output]"
+                  endId="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time.Inputs[Derived Column Input]"
+                  name="Excel Source Output"
+                  startId="Package\Altice FILE\EXTRACT AND LOAD\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{163D2EEE-06F0-431D-818E-93FB643F8939}"
+          DTS:ObjectName="{163D2EEE-06F0-431D-818E-93FB643F8939}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FILE" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpar Tabela PRED CROWD"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{5D2768C4-C81B-4CA6-AC62-D591DB2955B9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpar Tabela PRED CROWD"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{36AE5BF1-E42D-4551-A278-B579EC947472}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE &#xA;[SMART_M_LISBON].[dbo].[PREDICT_CROWD_OLD]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FB9B0A18-8F68-4B77-9544-B45178F28674}"
+      DTS:From="Package\Limpar Tabela PRED CROWD"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Altice FILE" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Altice FILE\EXTRACT AND LOAD"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="188,103"
+          Size="188,146"
+          Id="Package\Altice FILE"
+          TopLeft="19.5,107.5" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Limpar Tabela PRED CROWD"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="113.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Altice FILE\EXTRACT AND LOAD">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Altice FILE\EXTRACT AND LOAD\Excel Source"
+          TopLeft="169,26" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Altice FILE\EXTRACT AND LOAD\Create Substring Date and Time"
+          TopLeft="88.5,117.5" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd"
+          TopLeft="143,219.5" />
+        <EdgeLayout
+          Id="Package\Altice FILE\EXTRACT AND LOAD.Paths[Excel Source Output]"
+          TopLeft="238.5,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35,49.5"
+              Start="0,0"
+              End="-35,42">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.75"
+                    Point2="0,24.75"
+                    Point3="-4,24.75" />
+                  <mssgle:LineSegment
+                    End="-31,24.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31,24.75"
+                    Point2="-35,24.75"
+                    Point3="-35,28.75" />
+                  <mssgle:LineSegment
+                    End="-35,42" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Altice FILE\EXTRACT AND LOAD.Paths[Derived Column Output]"
+          TopLeft="203.5,159.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.5,60"
+              Start="0,0"
+              End="11.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="7.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.5,30"
+                    Point2="11.5,30"
+                    Point3="11.5,34" />
+                  <mssgle:LineSegment
+                    End="11.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Altice FILE\EXTRACT AND LOAD\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Altice FILE\EXTRACT AND LOAD\Predict Crowd">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1901 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/14/2020 10:11:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{D9415AE2-1A47-4E0A-AB7B-A73EA3C1D9F1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="IMPORT_WEATHER"
+  DTS:PackageType="5"
+  DTS:VersionBuild="162"
+  DTS:VersionGUID="{A7684E78-0FF1-467E-9E16-692E18705E8E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8A7B4284-E596-495D-890A-AEF166F3B15D}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WEATHER_FACTS]"
+      DTS:CreationName="EXCEL"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{782ea9fd-d09c-4bc4-b7cb-da20d0eae752}"
+      DTS:ObjectName="WEATHER_FACTS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Nova Versão Modelo Preditivo\IPMA_20180304_20180318.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WEATHER_STOPS]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{C3F4D0E5-D2C5-4F8E-B3EE-08603420D5B1}"
+      DTS:ObjectName="WEATHER_STOPS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Nova Versão Modelo Preditivo\bus_stops_weather_stations.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Id"
+              DTS:DTSID="{46BD8C8C-3F88-4DA6-B540-B42422CE3319}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StopId"
+              DTS:DTSID="{CB511FF7-A0BF-4F4F-9F8F-4BF78B4A3C94}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StopName"
+              DTS:DTSID="{9A9A93E7-1F74-46C4-80E4-AF971F1C5618}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="id_station"
+              DTS:DTSID="{80020044-7674-4F99-A5B8-CBD64F4F9AAF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="200"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="weather_station"
+              DTS:DTSID="{4E9C9BF1-A069-4443-A554-FE863DD16B47}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Limpar Tabela WEATHER tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{D0B48993-4D77-4475-A053-E2DBC39AD78A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpar Tabela WEATHER tables"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8A7B4284-E596-495D-890A-AEF166F3B15D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [pred].[WEATHER_STOPS]&#xA;&#xA;TRUNCATE TABLE [pred].[WEATHER_FACTS]&#xA;&#xA;TRUNCATE TABLE [pred].[WEATHER]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load INTO FINAL TABLE WEATHER"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4410bf05-63f7-43c1-bc5e-68260f7be7cd}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load INTO FINAL TABLE WEATHER"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="WEATHER Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[pred].[WEATHER]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[DateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DateTime"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateTime]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[DateTime]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[Sun]"
+                      cachedDataType="numeric"
+                      cachedName="Sun"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sun]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Sun]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[StopId]"
+                      cachedDataType="i4"
+                      cachedName="StopId"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopId]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StopId]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="StopName"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StopName]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[WeatherStation]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="WeatherStation"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherStation]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WeatherStation]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[StationId]"
+                      cachedDataType="i4"
+                      cachedName="StationId"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StationId]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[Temperature]"
+                      cachedDataType="numeric"
+                      cachedName="Temperature"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Temperature]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[Humidity]"
+                      cachedDataType="i4"
+                      cachedName="Humidity"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Humidity]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Humidity]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[WindSpeed]"
+                      cachedDataType="numeric"
+                      cachedName="WindSpeed"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindSpeed]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WindSpeed]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[WindCardinal]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="WindCardinal"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindCardinal]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WindCardinal]" />
+                    <inputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].Columns[Precipitation]"
+                      cachedDataType="numeric"
+                      cachedName="Precipitation"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Precipitation]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Precipitation]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateTime]"
+                      dataType="dbTimeStamp"
+                      name="DateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      dataType="i4"
+                      name="StationId" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherStation]"
+                      dataType="wstr"
+                      length="200"
+                      name="WeatherStation" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      dataType="numeric"
+                      name="Temperature"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Humidity]"
+                      dataType="i4"
+                      name="Humidity" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sun]"
+                      dataType="numeric"
+                      name="Sun"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindSpeed]"
+                      dataType="numeric"
+                      name="WindSpeed"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindCardinal]"
+                      dataType="wstr"
+                      length="100"
+                      name="WindCardinal" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[Precipitation]"
+                      dataType="numeric"
+                      name="Precipitation"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopId]"
+                      dataType="i4"
+                      name="StopId" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="200"
+                      name="StopName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="WEATHER Source Tables"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [StopName]
+	  ,[StopId]		
+	  ,[DateTime]
+      ,A.[StationId]
+      ,A.[WeatherStation]
+      ,[Temperature]
+      ,[Humidity]
+      ,[Precipitation]
+      ,[Sun]
+      ,[WindSpeed]
+      ,[WindCardinal]
+  FROM [SMART_M_LISBON].[pred].[WEATHER_FACTS] A 
+  INNER JOIN [SMART_M_LISBON].[pred].[WEATHER_STOPS] B ON A.[StationId] = B.[StationId]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StopName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[StopName]"
+                      length="200"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StopName]"
+                      name="StopName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StopId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[StopId]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StopId]"
+                      name="StopId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[DateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[DateTime]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[DateTime]"
+                      name="DateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StationId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[StationId]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[StationId]"
+                      name="StationId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WeatherStation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[WeatherStation]"
+                      length="200"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WeatherStation]"
+                      name="WeatherStation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Temperature]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Temperature]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Temperature]"
+                      name="Temperature"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Humidity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Humidity]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Humidity]"
+                      name="Humidity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Precipitation]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Precipitation]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Precipitation]"
+                      name="Precipitation"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Sun]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Sun]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[Sun]"
+                      name="Sun"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WindSpeed]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[WindSpeed]"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WindSpeed]"
+                      name="WindSpeed"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WindCardinal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[WindCardinal]"
+                      length="100"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].Columns[WindCardinal]"
+                      name="WindCardinal"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="200"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[StopId]"
+                      dataType="i4"
+                      name="StopId" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[DateTime]"
+                      dataType="dbTimeStamp"
+                      name="DateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[StationId]"
+                      dataType="i4"
+                      name="StationId" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[WeatherStation]"
+                      dataType="wstr"
+                      length="200"
+                      name="WeatherStation" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Temperature]"
+                      dataType="numeric"
+                      name="Temperature"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Humidity]"
+                      dataType="i4"
+                      name="Humidity" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Precipitation]"
+                      dataType="numeric"
+                      name="Precipitation"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[Sun]"
+                      dataType="numeric"
+                      name="Sun"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[WindSpeed]"
+                      dataType="numeric"
+                      name="WindSpeed"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output].ExternalColumns[WindCardinal]"
+                      dataType="wstr"
+                      length="100"
+                      name="WindCardinal" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[StopName]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[StopName]"
+                      name="StopName" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[StopId]"
+                      dataType="i4"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[StopId]"
+                      name="StopId" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[DateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[DateTime]"
+                      name="DateTime" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[StationId]"
+                      dataType="i4"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[StationId]"
+                      name="StationId" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[WeatherStation]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[WeatherStation]"
+                      name="WeatherStation" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Temperature]"
+                      dataType="numeric"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Temperature]"
+                      name="Temperature"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Humidity]"
+                      dataType="i4"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Humidity]"
+                      name="Humidity" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Precipitation]"
+                      dataType="numeric"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Precipitation]"
+                      name="Precipitation"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Sun]"
+                      dataType="numeric"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[Sun]"
+                      name="Sun"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[WindSpeed]"
+                      dataType="numeric"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[WindSpeed]"
+                      name="WindSpeed"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[WindCardinal]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[WindCardinal]"
+                      name="WindCardinal" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load INTO FINAL TABLE WEATHER.Paths[OLE DB Source Output]"
+              endId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load WEATHER_FACTS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1ef523bd-9c66-443f-a797-4374c61d4858}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load WEATHER_FACTS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="WEATHER_FACTS Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[pred].[WEATHER_FACTS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[datetime]"
+                      cachedDataType="date"
+                      cachedName="datetime"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateTime]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[datetime]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[sun]"
+                      cachedDataType="r8"
+                      cachedName="sun"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sun]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[sun]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[station_id]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="station_id"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[station_id]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[station]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="station"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherStation]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[station]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[temp]"
+                      cachedDataType="r8"
+                      cachedName="temp"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[temp]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[hum]"
+                      cachedDataType="r8"
+                      cachedName="hum"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Humidity]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[hum]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[wind_speed]"
+                      cachedDataType="r8"
+                      cachedName="wind_speed"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindSpeed]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[wind_speed]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[wind_cardinal]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="wind_cardinal"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindCardinal]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[wind_cardinal]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].Columns[precip]"
+                      cachedDataType="r8"
+                      cachedName="precip"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Precipitation]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[precip]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateTime]"
+                      dataType="dbTimeStamp"
+                      name="DateTime" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      dataType="i4"
+                      name="StationId" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherStation]"
+                      dataType="wstr"
+                      length="200"
+                      name="WeatherStation" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Temperature]"
+                      dataType="numeric"
+                      name="Temperature"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Humidity]"
+                      dataType="i4"
+                      name="Humidity" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sun]"
+                      dataType="numeric"
+                      name="Sun"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindSpeed]"
+                      dataType="numeric"
+                      name="WindSpeed"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WindCardinal]"
+                      dataType="wstr"
+                      length="100"
+                      name="WindCardinal" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input].ExternalColumns[Precipitation]"
+                      dataType="numeric"
+                      name="Precipitation"
+                      precision="10"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="WEATHER_FACTS Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT *
+FROM ZonalStats_KernelDensity_Projec$</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WEATHER_FACTS]"
+                  connectionManagerRefId="Package.ConnectionManagers[WEATHER_FACTS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[datetime]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[datetime]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[datetime]"
+                      name="datetime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[station_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[station_id]"
+                      length="255"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[station_id]"
+                      name="station_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[station]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[station]"
+                      length="255"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[station]"
+                      name="station"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[temp]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[temp]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[temp]"
+                      name="temp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[hum]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[hum]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[hum]"
+                      name="hum"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[precip]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[precip]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[precip]"
+                      name="precip"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[sun]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[sun]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[sun]"
+                      name="sun"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[wind_speed]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[wind_speed]"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[wind_speed]"
+                      name="wind_speed"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[wind_cardinal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[wind_cardinal]"
+                      length="255"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].Columns[wind_cardinal]"
+                      name="wind_cardinal"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[datetime]"
+                      dataType="date"
+                      name="datetime" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[station_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="station_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[station]"
+                      dataType="wstr"
+                      length="255"
+                      name="station" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[temp]"
+                      dataType="r8"
+                      name="temp" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[hum]"
+                      dataType="r8"
+                      name="hum" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[precip]"
+                      dataType="r8"
+                      name="precip" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[sun]"
+                      dataType="r8"
+                      name="sun" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[wind_speed]"
+                      dataType="r8"
+                      name="wind_speed" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output].ExternalColumns[wind_cardinal]"
+                      dataType="wstr"
+                      length="255"
+                      name="wind_cardinal" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[datetime]"
+                      dataType="date"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[datetime]"
+                      name="datetime" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[station_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[station_id]"
+                      name="station_id" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[station]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[station]"
+                      name="station" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[temp]"
+                      dataType="r8"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[temp]"
+                      name="temp" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[hum]"
+                      dataType="r8"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[hum]"
+                      name="hum" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[precip]"
+                      dataType="r8"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[precip]"
+                      name="precip" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[sun]"
+                      dataType="r8"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[sun]"
+                      name="sun" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[wind_speed]"
+                      dataType="r8"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[wind_speed]"
+                      name="wind_speed" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[wind_cardinal]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[wind_cardinal]"
+                      name="wind_cardinal" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load WEATHER_FACTS.Paths[Excel Source Output]"
+              endId="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Load WEATHER_FACTS\WEATHER_FACTS Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load WEATHER_STOPS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{400AA4C0-19BC-4C3B-9F0B-A4EEE0750B84}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load WEATHER_STOPS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="WEATHER_STOPS Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[pred].[WEATHER_STOPS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="StopName"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[StopName]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].Columns[StopId]"
+                      cachedDataType="i4"
+                      cachedName="StopId"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopId]"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[StopId]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].Columns[id_station]"
+                      cachedDataType="i4"
+                      cachedName="id_station"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[id_station]" />
+                    <inputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].Columns[weather_station]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="weather_station"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherStation]"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[weather_station]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopId]"
+                      dataType="i4"
+                      name="StopId" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="200"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[StationId]"
+                      dataType="i4"
+                      name="StationId" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherStation]"
+                      dataType="wstr"
+                      length="200"
+                      name="WeatherStation" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="2070"
+              name="WEATHER_STOPS Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WEATHER_STOPS]"
+                  connectionManagerRefId="Package.ConnectionManagers[WEATHER_STOPS]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[StopName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[StopName]"
+                      length="200"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[StopName]"
+                      name="StopName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[StopId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[StopId]"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[StopId]"
+                      name="StopId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[Id]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[Id]"
+                      name="Id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[id_station]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[id_station]"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[id_station]"
+                      name="id_station"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[weather_station]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[weather_station]"
+                      length="200"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].Columns[weather_station]"
+                      name="weather_station"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="200"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[StopId]"
+                      dataType="i4"
+                      name="StopId" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[Id]"
+                      dataType="i8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[id_station]"
+                      dataType="i4"
+                      name="id_station" />
+                    <externalMetadataColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output].ExternalColumns[weather_station]"
+                      dataType="wstr"
+                      length="200"
+                      name="weather_station" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load WEATHER_STOPS.Paths[Flat File Source Output]"
+              endId="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Load WEATHER_STOPS\WEATHER_STOPS Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{2637B901-DF3E-477B-B8BE-347A619ADE74}"
+      DTS:From="Package\Limpar Tabela WEATHER tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load WEATHER_STOPS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B7B81521-FC9E-467F-82E5-D94A3DA37776}"
+      DTS:From="Package\Load WEATHER_STOPS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load WEATHER_FACTS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{FEBB9621-1EAC-4183-8285-1AD3DB667BF9}"
+      DTS:From="Package\Load WEATHER_FACTS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load INTO FINAL TABLE WEATHER" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Limpar Tabela WEATHER tables"
+          TopLeft="68,9.5" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\Load WEATHER_FACTS"
+          TopLeft="103,182" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Load WEATHER_STOPS"
+          TopLeft="83,100" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="180,51.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.5"
+              Start="0,0"
+              End="0,41">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="178,142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,40"
+              Start="0,0"
+              End="19.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16"
+                    Point2="0,20"
+                    Point3="4,20" />
+                  <mssgle:LineSegment
+                    End="15.5,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,20"
+                    Point2="19.5,20"
+                    Point3="19.5,24" />
+                  <mssgle:LineSegment
+                    End="19.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="246,42"
+          Id="Package\Load INTO FINAL TABLE WEATHER"
+          TopLeft="68,284" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="194.25,224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load WEATHER_FACTS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="220,42"
+          Id="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination"
+          TopLeft="382,200" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Load WEATHER_FACTS\WEATHER_FACTS Source"
+          TopLeft="379,54" />
+        <EdgeLayout
+          Id="Package\Load WEATHER_FACTS.Paths[Excel Source Output]"
+          TopLeft="478.5,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.5,104"
+              Start="0,0"
+              End="13.5,96.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48"
+                    Point2="0,52"
+                    Point3="4,52" />
+                  <mssgle:LineSegment
+                    End="9.5,52" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.5,52"
+                    Point2="13.5,52"
+                    Point3="13.5,56" />
+                  <mssgle:LineSegment
+                    End="13.5,96.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load WEATHER_FACTS\WEATHER_FACTS Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load WEATHER_STOPS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Load WEATHER_STOPS\WEATHER_STOPS Source"
+          TopLeft="412,67" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination"
+          TopLeft="382,200" />
+        <EdgeLayout
+          Id="Package\Load WEATHER_STOPS.Paths[Flat File Source Output]"
+          TopLeft="512,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.5,91"
+              Start="0,0"
+              End="-19.5,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.5"
+                    Point2="0,45.5"
+                    Point3="-4,45.5" />
+                  <mssgle:LineSegment
+                    End="-15.5,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.5,45.5"
+                    Point2="-19.5,45.5"
+                    Point3="-19.5,49.5" />
+                  <mssgle:LineSegment
+                    End="-19.5,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load WEATHER_STOPS\WEATHER_STOPS Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load WEATHER_FACTS\WEATHER_FACTS Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load INTO FINAL TABLE WEATHER">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination"
+          TopLeft="382,200" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables"
+          TopLeft="395,81" />
+        <EdgeLayout
+          Id="Package\Load INTO FINAL TABLE WEATHER.Paths[OLE DB Source Output]"
+          TopLeft="493,123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.5,77"
+              Start="0,0"
+              End="-19.5,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.5"
+                    Point2="0,38.5"
+                    Point3="-4,38.5" />
+                  <mssgle:LineSegment
+                    End="-15.5,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.5,38.5"
+                    Point2="-19.5,38.5"
+                    Point3="-19.5,42.5" />
+                  <mssgle:LineSegment
+                    End="-19.5,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load INTO FINAL TABLE WEATHER\WEATHER Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load INTO FINAL TABLE WEATHER\WEATHER Source Tables">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

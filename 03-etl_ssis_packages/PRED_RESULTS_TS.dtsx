@@ -1,0 +1,3371 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/14/2020 10:11:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{684F1F66-0AA2-426B-848B-6C38C9EB8D9B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="PRED_RESULTS_TS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="172"
+  DTS:VersionGUID="{9AA0C569-8D4A-4614-9428-14B67C6CE859}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FILE_PRED]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{0a090988-7319-4e84-b779-eb4761d43359}"
+      DTS:ObjectName="FILE_PRED">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FULL_PATH_PRED]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\pred\pred_arima_2_Al. Beato">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Index"
+              DTS:DTSID="{AF583C6A-AD76-4FCC-95E0-8375F5357D93}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BusEntries_pred"
+              DTS:DTSID="{9D77CBC7-E892-46C9-95B0-49AC1D83F17B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FILE_TRUE]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{AE82177F-A263-4ACC-99D9-27703D2EBF70}"
+      DTS:ObjectName="FILE_TRUE">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FULL_PATH_TRUE]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\true\true_arima_2_Al. Beato">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Index"
+              DTS:DTSID="{582BF4BC-4B4E-40E2-9124-0376DF3D55C6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="135"
+              DTS:TextQualified="True"
+              DTS:ObjectName="30MinIntervals"
+              DTS:DTSID="{4DAB528C-634C-4CAA-A869-1E95FDF1A19C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BusEntries_true"
+              DTS:DTSID="{0EA77E5D-FAE5-47AC-93D0-43F27B9E4629}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C89A8691-87C5-4988-B870-A0B47490481F}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4B6CC9B1-98EB-4E4F-8F47-CC30A63A05CF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE_BASE_PATH">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{867328F0-5AB5-443D-8543-4B8FD398A60A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE_PRED">
+      <DTS:VariableValue
+        DTS:DataType="8">pred_arima_2_Al. Beato</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BE4AB80A-C7A1-4664-AD6D-324FC1550F19}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FILE_BASE_PATH] + &quot;\\pred&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE_SOURCE_PRED">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\pred</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{99AB082C-8419-4E71-BFBF-C00CEA9A0935}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FILE_BASE_PATH] + &quot;\\true&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE_SOURCE_TRUE">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\true</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9A2987D3-BEB5-41A2-90FE-4759F6838720}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE_TRUE">
+      <DTS:VariableValue
+        DTS:DataType="8">true_arima_2_Al. Beato</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E0C3EE74-B0AC-44E6-9F11-7ACC903DF33B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FILE_SOURCE_PRED] + &quot;\\&quot;  +@[User::FILE_PRED]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FULL_PATH_PRED">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\pred\pred_arima_2_Al. Beato</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BF0BDC79-D8EF-4FB5-AA67-E0A8EB7D4A76}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::FILE_SOURCE_TRUE] + &quot;\\&quot;  +@[User::FILE_TRUE]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FULL_PATH_TRUE">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\true\true_arima_2_Al. Beato</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E37E29F4-5AC4-4121-98F5-F87C308970E9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PRED_ID">
+      <DTS:VariableValue
+        DTS:DataType="8">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Check PRED_ID"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{F27832AA-09D9-43DD-B829-34188AF12654}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Check PRED_ID"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C89A8691-87C5-4988-B870-A0B47490481F}"
+          SQLTask:SqlStatementSource="SELECT CASE WHEN MAX(PRED_ID) IS NULL THEN 0 ELSE MAX(PRED_ID) END&#xA;FROM PRED_RESULTS_TS"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::PRED_ID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpar Tabela PRED_RESULTS_TS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{fa441a90-45d1-42fc-8f39-83180617f1d7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpar Tabela PRED_RESULTS_TS"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C89A8691-87C5-4988-B870-A0B47490481F}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE &#xA;[SMART_M_LISBON].[dbo].[PRED_RESULTS_TS]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpar Tabela PRED_RESULTS_TS_pred"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{caa5e526-b072-4389-927b-2ae0470ecf23}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpar Tabela PRED_RESULTS_TS_pred"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C89A8691-87C5-4988-B870-A0B47490481F}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE &#xA;[SMART_M_LISBON].[dbo].[PRED_RESULTS_TS_pred]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Limpar Tabela PRED_RESULTS_TS_true"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{cd843395-016a-461b-bf07-b01f6d212a88}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Limpar Tabela PRED_RESULTS_TS_true"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C89A8691-87C5-4988-B870-A0B47490481F}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE &#xA;[SMART_M_LISBON].[dbo].[PRED_RESULTS_TS_true]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Merge true and pred DB"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{11B49C9B-431B-4115-95C3-34A44A6BB7AE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge true and pred DB"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Merge true and pred DB\Calculate Diff"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Calculate Diff"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Merge true and pred DB\Calculate Diff.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Calculate Diff.Inputs[Derived Column Input].Columns[Actual]"
+                      cachedDataType="i4"
+                      cachedName="Actual"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Actual]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Calculate Diff.Inputs[Derived Column Input].Columns[Predicted]"
+                      cachedDataType="i4"
+                      cachedName="Predicted"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Predicted]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Merge true and pred DB\Calculate Diff.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output].Columns[Diff]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output].Columns[Diff]"
+                      name="Diff"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ABS](#{Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Actual]} - #{Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Predicted]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ABS(Actual - Predicted)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output].Columns[PRED_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output].Columns[PRED_ID]"
+                      name="PRED_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)@[User::PRED_ID] + 1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)@[User::PRED_ID] + 1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Merge true and pred DB\Calculate Diff.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge true and pred DB\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Index]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[30MInIntervals]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="30MInIntervals"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[30MInIntervals]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StopName"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[StopName]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[Actual]"
+                      cachedDataType="i4"
+                      cachedName="Actual"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Actual]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Right Input].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Index]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Right Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StopName"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[StopName]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Right Input].Columns[Predicted]"
+                      cachedDataType="i4"
+                      cachedName="Predicted"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Predicted]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Index]"
+                      dataType="i8"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Index]"
+                      name="Index"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[30MInIntervals]"
+                      name="30MInIntervals"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[30MInIntervals]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[StopName]"
+                      name="StopName"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[StopName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Actual]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Actual]"
+                      name="Actual">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input].Columns[Actual]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Predicted]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Predicted]"
+                      name="Predicted">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Right Input].Columns[Predicted]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge true and pred DB\pred DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="pred DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PRED_RESULTS_TS_pred]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Merge true and pred DB\pred DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Index]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Index]"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Index]"
+                      name="Index"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[30MInIntervals]"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]"
+                      name="30MInIntervals"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[StopName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[StopName]"
+                      length="50"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[StopName]"
+                      name="StopName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Actual]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Actual]"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Actual]"
+                      name="Actual"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Predicted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Predicted]"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Predicted]"
+                      name="Predicted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Diff]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Diff]"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Diff]"
+                      name="Diff"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Index]"
+                      dataType="i8"
+                      name="Index" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      name="30MInIntervals" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Actual]"
+                      dataType="i4"
+                      name="Actual" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Predicted]"
+                      dataType="i4"
+                      name="Predicted" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].ExternalColumns[Diff]"
+                      dataType="i4"
+                      name="Diff" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Index]"
+                      dataType="i8"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Index]"
+                      name="Index" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[30MInIntervals]"
+                      name="30MInIntervals" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[StopName]"
+                      name="StopName" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Actual]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Actual]"
+                      name="Actual" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Predicted]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Predicted]"
+                      name="Predicted" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Diff]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[Diff]"
+                      name="Diff" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge true and pred DB\pred Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="pred Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input].Columns[30MInIntervals]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="30MInIntervals"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StopName"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[StopName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input].Columns[Actual]"
+                      cachedDataType="i4"
+                      cachedName="Actual"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Actual]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input].Columns[Predicted]"
+                      cachedDataType="i4"
+                      cachedName="Predicted"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Predicted]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input].Columns[Diff]"
+                      cachedDataType="i4"
+                      cachedName="Diff"
+                      lineageId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Diff]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Index]"
+                      dataType="i8"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Index]"
+                      name="Index"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[30MInIntervals]"
+                      name="30MInIntervals">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[StopName]"
+                      name="StopName"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[StopName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Actual]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Actual]"
+                      name="Actual">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Actual]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Predicted]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Predicted]"
+                      name="Predicted">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Predicted]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Diff]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output].Columns[Diff]"
+                      name="Diff">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output].Columns[Diff]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge true and pred DB\PRED_RESULTS_TS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PRED_RESULTS_TS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PRED_RESULTS_TS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Index]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].Columns[30MInIntervals]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="30MInIntervals"
+                      cachedSortKeyPosition="3"
+                      externalMetadataColumnId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[30MInIntervals]"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[30MInIntervals]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StopName"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[StopName]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].Columns[Actual]"
+                      cachedDataType="i4"
+                      cachedName="Actual"
+                      externalMetadataColumnId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Actual]"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Actual]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].Columns[Diff]"
+                      cachedDataType="i4"
+                      cachedName="Diff"
+                      externalMetadataColumnId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Diff]"
+                      lineageId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output].Columns[Diff]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].Columns[PRED_ID]"
+                      cachedDataType="i4"
+                      cachedName="PRED_ID"
+                      externalMetadataColumnId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[PRED_ID]"
+                      lineageId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output].Columns[PRED_ID]" />
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].Columns[Predicted]"
+                      cachedDataType="i4"
+                      cachedName="Predicted"
+                      externalMetadataColumnId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Predicted]"
+                      lineageId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output].Columns[Predicted]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                      dataType="i8"
+                      name="Index" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      name="30MInIntervals" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Actual]"
+                      dataType="i4"
+                      name="Actual" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Predicted]"
+                      dataType="i4"
+                      name="Predicted" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[Diff]"
+                      dataType="i4"
+                      name="Diff" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input].ExternalColumns[PRED_ID]"
+                      dataType="i4"
+                      name="PRED_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\PRED_RESULTS_TS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\PRED_RESULTS_TS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\PRED_RESULTS_TS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge true and pred DB\true DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="true DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PRED_RESULTS_TS_true]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Merge true and pred DB\true DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Index]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Index]"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Index]"
+                      name="Index"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[30MInIntervals]"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]"
+                      name="30MInIntervals"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[StopName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[StopName]"
+                      length="50"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[StopName]"
+                      name="StopName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Actual]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Actual]"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Actual]"
+                      name="Actual"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Predicted]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Predicted]"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Predicted]"
+                      name="Predicted"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Diff]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Diff]"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Diff]"
+                      name="Diff"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Index]"
+                      dataType="i8"
+                      name="Index" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      name="30MInIntervals" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Actual]"
+                      dataType="i4"
+                      name="Actual" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Predicted]"
+                      dataType="i4"
+                      name="Predicted" />
+                    <externalMetadataColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].ExternalColumns[Diff]"
+                      dataType="i4"
+                      name="Diff" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Index]"
+                      dataType="i8"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Index]"
+                      name="Index" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[30MInIntervals]"
+                      name="30MInIntervals" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[StopName]"
+                      name="StopName" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Actual]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Actual]"
+                      name="Actual" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Predicted]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Predicted]"
+                      name="Predicted" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Diff]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[Diff]"
+                      name="Diff" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge true and pred DB\true Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="true Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input].Columns[Index]"
+                      cachedDataType="i8"
+                      cachedName="Index"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Index]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input].Columns[30MInIntervals]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="30MInIntervals"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StopName"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[StopName]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input].Columns[Actual]"
+                      cachedDataType="i4"
+                      cachedName="Actual"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Actual]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input].Columns[Predicted]"
+                      cachedDataType="i4"
+                      cachedName="Predicted"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Predicted]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input].Columns[Diff]"
+                      cachedDataType="i4"
+                      cachedName="Diff"
+                      lineageId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Diff]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Index]"
+                      dataType="i8"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Index]"
+                      name="Index"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Index]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[30MInIntervals]"
+                      name="30MInIntervals">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[30MInIntervals]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[StopName]"
+                      name="StopName"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[StopName]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Actual]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Actual]"
+                      name="Actual">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Actual]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Predicted]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Predicted]"
+                      name="Predicted">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Predicted]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Diff]"
+                      dataType="i4"
+                      lineageId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output].Columns[Diff]"
+                      name="Diff">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output].Columns[Diff]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Merge true and pred DB.Paths[Derived Column Output]"
+              endId="Package\Merge true and pred DB\PRED_RESULTS_TS.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Merge true and pred DB\Calculate Diff.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Merge true and pred DB.Paths[Merge Join Output]"
+              endId="Package\Merge true and pred DB\Calculate Diff.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\Merge true and pred DB\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Merge true and pred DB.Paths[OLE DB Source Output]"
+              endId="Package\Merge true and pred DB\true Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Merge true and pred DB\true DB.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Merge true and pred DB.Paths[OLE DB Source Output1]"
+              endId="Package\Merge true and pred DB\pred Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Merge true and pred DB\pred DB.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Merge true and pred DB.Paths[Sort Output]"
+              endId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Merge true and pred DB\true Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Merge true and pred DB.Paths[Sort Output1]"
+              endId="Package\Merge true and pred DB\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Merge true and pred DB\pred Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PRED FILES TS PRED"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{653ed666-732f-49d5-abc0-1ffc3ffe32ca}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PRED FILES TS PRED">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{e4e3f36c-90e5-46dd-855a-bed90d5344ec}"
+        DTS:ObjectName="{149A4E14-37E2-4750-82F9-A572AE89A981}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::FILE_SOURCE_PRED]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\pred" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{7bdcd98f-ae4c-4c2d-a2ae-25a49d68269e}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXTRACT AND LOAD PRED"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Create StopName Collumn"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Output].Columns[StopName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Output].Columns[StopName]"
+                          name="StopName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACE]([REPLACE]((DT_WSTR,50)[SUBSTRING](@[User::FILE_PRED],14,[LEN](@[User::FILE_PRED])),"#","\\"),".csv","")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACE(REPLACE((DT_WSTR,50)SUBSTRING(@[User::FILE_PRED],14,LEN(@[User::FILE_PRED])),"#","\\"),".csv","")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DB PRED_RESULTS_TS_pred"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[PRED_RESULTS_TS_pred]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].Columns[Index]"
+                          cachedDataType="i4"
+                          cachedName="Index"
+                          externalMetadataColumnId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[Index]" />
+                        <inputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].Columns[StopName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="StopName"
+                          externalMetadataColumnId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Output].Columns[StopName]" />
+                        <inputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].Columns[BusEntries_pred]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="BusEntries_pred"
+                          externalMetadataColumnId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[Predicted]"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[BusEntries_pred]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                          dataType="i8"
+                          name="Index" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[30MInIntervals]"
+                          dataType="dbTimeStamp"
+                          name="30MInIntervals" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                          dataType="wstr"
+                          length="50"
+                          name="StopName" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[Actual]"
+                          dataType="i4"
+                          name="Actual" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[Predicted]"
+                          dataType="i4"
+                          name="Predicted" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input].ExternalColumns[Diff]"
+                          dataType="i4"
+                          name="Diff" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="2070"
+                  name="Extract FILE_PRED"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[FILE_PRED]"
+                      connectionManagerRefId="Package.ConnectionManagers[FILE_PRED]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[Index]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].ExternalColumns[Index]"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[Index]"
+                          name="Index"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[BusEntries_pred]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].ExternalColumns[BusEntries_pred]"
+                          length="50"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[BusEntries_pred]"
+                          name="BusEntries_pred"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].ExternalColumns[Index]"
+                          dataType="i4"
+                          name="Index" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].ExternalColumns[BusEntries_pred]"
+                          dataType="wstr"
+                          length="50"
+                          name="BusEntries_pred" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Transfrom BusEntries_pred"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Inputs[Derived Column Input].Columns[BusEntries_pred]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="BusEntries_pred"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[BusEntries_pred]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_I4)[REPLACE](#{Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output].Columns[BusEntries_pred]},".",",")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_I4)REPLACE(BusEntries_pred,".",",")</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED.Paths[Derived Column Output]"
+                  endId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED.Paths[Derived Column Output1]"
+                  endId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn.Inputs[Derived Column Input]"
+                  name="Derived Column Output"
+                  startId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED.Paths[Flat File Source Output]"
+                  endId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{4FA9DD8C-4478-4D94-B59A-668AC95C05EF}"
+          DTS:ObjectName="{4FA9DD8C-4478-4D94-B59A-668AC95C05EF}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FILE_PRED" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PRED FILES TS TRUE"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{fdbd1eff-ef2f-49b7-9ce4-9cda10964331}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PRED FILES TS TRUE">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{95fe083c-3d6e-48cd-8fb6-8f417f670284}"
+        DTS:ObjectName="{149A4E14-37E2-4750-82F9-A572AE89A981}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::FILE_SOURCE_TRUE]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\Users\fabiodomingues\.spyder-py3\arima_data\arima_run_5\true" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{ca7e47a4-6d34-480e-8584-9e6edfe06fb0}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXTRACT AND LOAD TRUE"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Create StopName Collumn"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Output].Columns[StopName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Output].Columns[StopName]"
+                          name="StopName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACE]([REPLACE]((DT_WSTR,50)[SUBSTRING](@[User::FILE_TRUE],14,[LEN](@[User::FILE_TRUE])),"#","\\"),".csv","")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACE(REPLACE((DT_WSTR,50)SUBSTRING(@[User::FILE_TRUE],14,LEN(@[User::FILE_TRUE])),"#","\\"),".csv","")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DB PRED_RESULTS_TS_true"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[PRED_RESULTS_TS_true]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].Columns[Index]"
+                          cachedDataType="i8"
+                          cachedName="Index"
+                          externalMetadataColumnId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[Index]" />
+                        <inputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].Columns[30MinIntervals]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="30MinIntervals"
+                          externalMetadataColumnId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[30MInIntervals]"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[30MinIntervals]" />
+                        <inputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].Columns[StopName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="StopName"
+                          externalMetadataColumnId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Output].Columns[StopName]" />
+                        <inputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].Columns[BusEntries_true]"
+                          cachedDataType="i4"
+                          cachedName="BusEntries_true"
+                          externalMetadataColumnId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[Actual]"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[BusEntries_true]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                          dataType="i8"
+                          name="Index" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[30MInIntervals]"
+                          dataType="dbTimeStamp"
+                          name="30MInIntervals" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                          dataType="wstr"
+                          length="50"
+                          name="StopName" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[Actual]"
+                          dataType="i4"
+                          name="Actual" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[Predicted]"
+                          dataType="i4"
+                          name="Predicted" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input].ExternalColumns[Diff]"
+                          dataType="i4"
+                          name="Diff" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="2070"
+                  name="Extract FILE_TRUE"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[FILE_TRUE]"
+                      connectionManagerRefId="Package.ConnectionManagers[FILE_TRUE]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[Index]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].ExternalColumns[Index]"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[Index]"
+                          name="Index"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[30MinIntervals]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].ExternalColumns[30MinIntervals]"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[30MinIntervals]"
+                          name="30MinIntervals"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[BusEntries_true]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].ExternalColumns[BusEntries_true]"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].Columns[BusEntries_true]"
+                          name="BusEntries_true"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].ExternalColumns[Index]"
+                          dataType="i8"
+                          name="Index" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].ExternalColumns[30MinIntervals]"
+                          dataType="dbTimeStamp"
+                          name="30MinIntervals" />
+                        <externalMetadataColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output].ExternalColumns[BusEntries_true]"
+                          dataType="i4"
+                          name="BusEntries_true" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE.Paths[Derived Column Output]"
+                  endId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE.Paths[Flat File Source Output]"
+                  endId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn.Inputs[Derived Column Input]"
+                  name="Flat File Source Output"
+                  startId="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{BEF9A6FB-3E80-4CAF-96B8-E78D903D2DFB}"
+          DTS:ObjectName="{BEF9A6FB-3E80-4CAF-96B8-E78D903D2DFB}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FILE_TRUE" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{08E5D6CD-A313-4813-A596-913F2F866443}"
+      DTS:From="Package\Limpar Tabela PRED_RESULTS_TS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Limpar Tabela PRED_RESULTS_TS_true" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{6E49EAA7-730F-4E89-8226-ABA2BC2DCDE0}"
+      DTS:From="Package\PRED FILES TS TRUE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Merge true and pred DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D92381DC-DA82-4CE0-AFFF-D4CF8F615856}"
+      DTS:From="Package\Limpar Tabela PRED_RESULTS_TS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Limpar Tabela PRED_RESULTS_TS_pred" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{327111AA-D123-430C-8D62-63CDCDBBB21B}"
+      DTS:From="Package\Limpar Tabela PRED_RESULTS_TS_true"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\PRED FILES TS TRUE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{DD9275C3-3295-4F95-8E29-23B016358338}"
+      DTS:From="Package\Limpar Tabela PRED_RESULTS_TS_pred"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\PRED FILES TS PRED" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{24D1D007-0FC5-4288-8432-F4B2DA553997}"
+      DTS:From="Package\PRED FILES TS PRED"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Merge true and pred DB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{71710B1A-4915-405D-B534-A410FDFF8A7C}"
+      DTS:From="Package\Limpar Tabela PRED_RESULTS_TS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Check PRED_ID" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{43929ED0-0C12-4847-9B90-596C1A0C6349}"
+      DTS:From="Package\Check PRED_ID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Merge true and pred DB" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Check PRED_ID"
+          TopLeft="388,195" />
+        <NodeLayout
+          Size="242,42"
+          Id="Package\Limpar Tabela PRED_RESULTS_TS"
+          TopLeft="351,5.49999999999989" />
+        <NodeLayout
+          Size="269,42"
+          Id="Package\Limpar Tabela PRED_RESULTS_TS_pred"
+          TopLeft="645.5,114.5" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Limpar Tabela PRED_RESULTS_TS_true"
+          TopLeft="11,107.5" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Merge true and pred DB"
+          TopLeft="358.5,402.5" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED"
+          TopLeft="6.5,3.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="217,103"
+          Size="217,146"
+          Id="Package\PRED FILES TS PRED"
+          TopLeft="667.5,201.5" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="217,103"
+          Size="217,146"
+          Id="Package\PRED FILES TS TRUE"
+          TopLeft="35.5000000000001,209.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="433,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-289,60"
+              Start="0,0"
+              End="-289,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2364532019704" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2364532019704"
+                    Point2="0,24.2364532019704"
+                    Point3="-4,24.2364532019704" />
+                  <mssgle:LineSegment
+                    End="-285,24.2364532019704" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-285,24.2364532019704"
+                    Point2="-289,24.2364532019704"
+                    Point3="-289,28.2364532019704" />
+                  <mssgle:LineSegment
+                    End="-289,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="144,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="264.75,47"
+              Start="0,0"
+              End="264.75,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.9063032367973" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.9063032367973"
+                    Point2="0,30.9063032367973"
+                    Point3="4,30.9063032367973" />
+                  <mssgle:LineSegment
+                    End="260.75,30.9063032367973" />
+                  <mssgle:CubicBezierSegment
+                    Point1="260.75,30.9063032367973"
+                    Point2="264.75,30.9063032367973"
+                    Point3="264.75,34.9063032367973" />
+                  <mssgle:LineSegment
+                    End="264.75,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="511,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="269,67"
+              Start="0,0"
+              End="269,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.064039408867" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.064039408867"
+                    Point2="0,27.064039408867"
+                    Point3="4,27.064039408867" />
+                  <mssgle:LineSegment
+                    End="265,27.064039408867" />
+                  <mssgle:CubicBezierSegment
+                    Point1="265,27.064039408867"
+                    Point2="269,27.064039408867"
+                    Point3="269,31.064039408867" />
+                  <mssgle:LineSegment
+                    End="269,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="144,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="778,156.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="776,347.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-274.75,55"
+              Start="0,0"
+              End="-274.75,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.1669505962521" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.1669505962521"
+                    Point2="0,36.1669505962521"
+                    Point3="-4,36.1669505962521" />
+                  <mssgle:LineSegment
+                    End="-270.75,36.1669505962521" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-270.75,36.1669505962521"
+                    Point2="-274.75,36.1669505962521"
+                    Point3="-274.75,40.1669505962521" />
+                  <mssgle:LineSegment
+                    End="-274.75,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="468.25,47.4999999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,147.5"
+              Start="0,0"
+              End="0,140">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,140" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="464.5,237">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,165.5"
+              Start="0,0"
+              End="-9.5,158">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,78.75"
+                    Point2="0,82.75"
+                    Point3="-4,82.75" />
+                  <mssgle:LineSegment
+                    End="-5.5,82.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,82.75"
+                    Point2="-9.5,82.75"
+                    Point3="-9.5,86.75" />
+                  <mssgle:LineSegment
+                    End="-9.5,158" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Merge true and pred DB">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Merge true and pred DB\Merge Join"
+          TopLeft="212,188" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Merge true and pred DB\PRED_RESULTS_TS"
+          TopLeft="186,475.5" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Merge true and pred DB\pred Sort"
+          TopLeft="390,103.5" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Merge true and pred DB\pred DB"
+          TopLeft="389,10.5" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Merge true and pred DB\true Sort"
+          TopLeft="5.5,107.5" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\Merge true and pred DB\Calculate Diff"
+          TopLeft="177,311.5" />
+        <NodeLayout
+          Size="115,42"
+          Id="Package\Merge true and pred DB\true DB"
+          TopLeft="8,5.5" />
+        <EdgeLayout
+          Id="Package\Merge true and pred DB.Paths[Sort Output1]"
+          TopLeft="451.5,145.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-154.166666666667,42.5"
+              Start="0,0"
+              End="-154.166666666667,35">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.1899696048632" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.1899696048632"
+                    Point2="0,25.1899696048632"
+                    Point3="-4,25.1899696048632" />
+                  <mssgle:LineSegment
+                    End="-150.166666666667,25.1899696048632" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-150.166666666667,25.1899696048632"
+                    Point2="-154.166666666667,25.1899696048632"
+                    Point3="-154.166666666667,29.1899696048632" />
+                  <mssgle:LineSegment
+                    End="-154.166666666667,35" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge true and pred DB.Paths[Sort Output]"
+          TopLeft="65.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="211.5,38.5"
+              Start="0,0"
+              End="211.5,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.25"
+                    Point2="0,19.25"
+                    Point3="4,19.25" />
+                  <mssgle:LineSegment
+                    End="207.5,19.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="207.5,19.25"
+                    Point2="211.5,19.25"
+                    Point3="211.5,23.25" />
+                  <mssgle:LineSegment
+                    End="211.5,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge true and pred DB.Paths[OLE DB Source Output1]"
+          TopLeft="449.5,52.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge true and pred DB.Paths[OLE DB Source Output]"
+          TopLeft="65.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge true and pred DB.Paths[Merge Join Output]"
+          TopLeft="277,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-29.5,81.5"
+              Start="0,0"
+              End="-29.5,74">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.75"
+                    Point2="0,40.75"
+                    Point3="-4,40.75" />
+                  <mssgle:LineSegment
+                    End="-25.5,40.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25.5,40.75"
+                    Point2="-29.5,40.75"
+                    Point3="-29.5,44.75" />
+                  <mssgle:LineSegment
+                    End="-29.5,74" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge true and pred DB.Paths[Derived Column Output]"
+          TopLeft="247.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.5,122"
+              Start="0,0"
+              End="24.5,114.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57"
+                    Point2="0,61"
+                    Point3="4,61" />
+                  <mssgle:LineSegment
+                    End="20.5,61" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.5,61"
+                    Point2="24.5,61"
+                    Point3="24.5,65" />
+                  <mssgle:LineSegment
+                    End="24.5,114.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge true and pred DB\PRED_RESULTS_TS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge true and pred DB\pred DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge true and pred DB\true DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Transfrom BusEntries_pred"
+          TopLeft="46,97" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred"
+          TopLeft="21.5,315.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Create StopName Collumn"
+          TopLeft="11.5,222.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\Extract FILE_PRED"
+          TopLeft="29.5,5.5" />
+        <EdgeLayout
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED.Paths[Flat File Source Output]"
+          TopLeft="113,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.5,49.5"
+              Start="0,0"
+              End="36.5,42">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.75"
+                    Point2="0,24.75"
+                    Point3="4,24.75" />
+                  <mssgle:LineSegment
+                    End="32.5,24.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.5,24.75"
+                    Point2="36.5,24.75"
+                    Point3="36.5,28.75" />
+                  <mssgle:LineSegment
+                    End="36.5,42" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED.Paths[Derived Column Output1]"
+          TopLeft="149.5,139">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36.5,83.5"
+              Start="0,0"
+              End="-36.5,76">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.75"
+                    Point2="0,41.75"
+                    Point3="-4,41.75" />
+                  <mssgle:LineSegment
+                    End="-32.5,41.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32.5,41.75"
+                    Point2="-36.5,41.75"
+                    Point3="-36.5,45.75" />
+                  <mssgle:LineSegment
+                    End="-36.5,76" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED.Paths[Derived Column Output]"
+          TopLeft="113,264.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16,51"
+              Start="0,0"
+              End="16,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="4,25.5" />
+                  <mssgle:LineSegment
+                    End="12,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12,25.5"
+                    Point2="16,25.5"
+                    Point3="16,29.5" />
+                  <mssgle:LineSegment
+                    End="16,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\PRED FILES TS PRED\EXTRACT AND LOAD PRED\DB PRED_RESULTS_TS_pred">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="213,42"
+          Id="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Extract FILE_TRUE"
+          TopLeft="28,5.5" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\Create StopName Collumn"
+          TopLeft="10.5,107.5" />
+        <EdgeLayout
+          Id="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE.Paths[Flat File Source Output]"
+          TopLeft="112,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE.Paths[Derived Column Output]"
+          TopLeft="112,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\PRED FILES TS TRUE\EXTRACT AND LOAD TRUE\DB PRED_RESULTS_TS_true">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

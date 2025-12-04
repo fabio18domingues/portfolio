@@ -1,0 +1,2127 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/21/2020 1:28:18 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{EFBA80B1-7416-46AD-B0C1-F18DA8D22712}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="LOAD_FACT_EVENTS_TRAFFIC"
+  DTS:PackageType="5"
+  DTS:VersionBuild="95"
+  DTS:VersionGUID="{07F29EC7-D9E9-4BE5-9FAD-E5F5E1CC3327}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Dados Eventos]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{7DCF6577-4D77-43B5-98C6-52BD07B5D533}"
+      DTS:ObjectName="Dados Eventos">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[eventos20190508.json]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{BA06615A-A4A0-47FA-B8C0-BE187A129116}"
+      DTS:ObjectName="eventos20190508.json">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos\eventos20190508.json" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Events Files CM]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{CA1B655A-5580-4021-9B4C-8A76EBEEBB61}"
+      DTS:ObjectName="Events Files CM">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::SOURCE_DIRECTORY] +"\\"+@[User::FILE]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_ONE"
+              DTS:DTSID="{E0F378A5-EAE8-42EE-BB0A-0076C7F3AC65}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID_TWO"
+              DTS:DTSID="{67EC3B75-F955-48DD-8FEF-6601EA8F1E32}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LATITUDE"
+              DTS:DTSID="{6AD6B3B9-7DFA-49C6-8054-7AA548EFF789}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LONGITUDE"
+              DTS:DTSID="{1AFA08D5-E390-4723-8273-7CBA2B04649A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COVERAGE_RADIUS"
+              DTS:DTSID="{E027AD3D-EC62-44A1-9E0B-BAFEAAF9AF1A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="20"
+              DTS:TextQualified="True"
+              DTS:ObjectName="POPULATION"
+              DTS:DTSID="{D9D2F2E2-CE62-4A68-B188-9224AB99AABD}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4737154C-4E55-402F-8336-AEFF3A095139}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[mid_destination]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{BA2759B3-5DD3-4488-AFC0-D3F530579AF7}"
+      DTS:ObjectName="mid_destination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\Dados Eventos\mid_destination\dest" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0872559E-23D9-4049-909F-7363B9E7F679}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENTS_LIST">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2832A88B-1938-4543-AE2D-842BDCBD54FB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENT_A">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B8A6C0A3-4852-4FDF-95DF-82C8E9DB3C3D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;&#xA;  SELECT [ID_EVENT]&#xA;, [EVENT_DATE]      ,[address]&#xA;      ,[borough]&#xA;      ,[code]&#xA;      ,[date]&#xA;      ,[detail]&#xA;      ,[end_date]&#xA;      ,[estimated_visitors]&#xA;&#x9;  ,CASE WHEN RIGHT(POSITION, 20) = '\&quot;MultiLineString\&quot;}]}' THEN 1&#xA;&#x9;  &#x9;&#x9;WHEN RIGHT(POSITION, 10) = '\&quot;Point\&quot;}]}'           THEN 0&#xA;&#x9;&#x9;&#x9;&#x9;END AS POSITION_TIPO&#xA;      ,CASE WHEN RIGHT(POSITION, 20) = '\&quot;MultiLineString\&quot;}]}' THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(SUBSTRING(position, 63, LEN(position)-93), '[[[','('),'], [',','),', ', ' '),']]]',')'),'[',''),']','') AS VARCHAR(8000))&#xA;&#x9;&#x9;&#x9;WHEN RIGHT(POSITION, 10) = '\&quot;Point\&quot;}]}'           THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LEFT(RIGHT(POSITION, 48),28),' ',''),'[','('),']',')'),'[',''),']',''),',',' ') AS VARCHAR(50))  ELSE NULL &#xA;&#x9;&#x9;&#x9;&#x9;END AS  POSITION_SUBSTRING&#xA;      ,[start_date]&#xA;      ,[typology]&#xA;      ,[typology_code]&#xA;      ,[entity_id]&#xA;      ,[entity_ts]&#xA;      ,[validity_ts]&#xA; FROM [SMART_M_LISBON].[dbo].[EVENTOS]&#xA;WHERE [ID_EVENT] = '&quot; + @[User::EVENT_A] + &quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EVENT_EXTRACTION_QUERY">
+      <DTS:VariableValue
+        DTS:DataType="8">
+  SELECT [ID_EVENT]
+, [EVENT_DATE]      ,[address]
+      ,[borough]
+      ,[code]
+      ,[date]
+      ,[detail]
+      ,[end_date]
+      ,[estimated_visitors]
+	  ,CASE WHEN RIGHT(POSITION, 20) = '"MultiLineString"}]}' THEN 1
+	  		WHEN RIGHT(POSITION, 10) = '"Point"}]}'           THEN 0
+				END AS POSITION_TIPO
+      ,CASE WHEN RIGHT(POSITION, 20) = '"MultiLineString"}]}' THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(SUBSTRING(position, 63, LEN(position)-93), '[[[','('),'], [',','),', ', ' '),']]]',')'),'[',''),']','') AS VARCHAR(8000))
+			WHEN RIGHT(POSITION, 10) = '"Point"}]}'           THEN CAST(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LEFT(RIGHT(POSITION, 48),28),' ',''),'[','('),']',')'),'[',''),']',''),',',' ') AS VARCHAR(50))  ELSE NULL 
+				END AS  POSITION_SUBSTRING
+      ,[start_date]
+      ,[typology]
+      ,[typology_code]
+      ,[entity_id]
+      ,[entity_ts]
+      ,[validity_ts]
+ FROM [SMART_M_LISBON].[dbo].[EVENTOS]
+WHERE [ID_EVENT] = ''</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D168186-1C0A-4665-BCEA-E54A54DC328A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FILE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{805F5629-06F5-4FF5-BDF8-D8E25899592D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PARAM_LINHA">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F35B410B-E378-4472-8C40-6DFD3092285D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RUN_DATE">
+      <DTS:VariableValue
+        DTS:DataType="8">2020-03-03</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{221B3156-E495-43D5-9551-4142A7A91E3E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SOURCE_DIRECTORY">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E6BD74D2-175D-414C-B6AF-E741D1B35713}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT &#xA;'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,&#xA;ID_EVENT AS LS_INTERNAL_EVENT_ID, &#xA;'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_DISPLAY_CODE,&#xA;LAT_GROUP AS DISPLAY_LAT,&#xA;LONG_GROUP AS DISPLAY_LONG,&#xA;dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE,&#xA;CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) &lt; 4500 THEN 1 ELSE 0 END AS FLAG_NEAR_EV_vs_AC&#xA;FROM SMART_M_LISBON.dbo.EVENTOS_GROUP A&#xA;CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP B&#xA;WHERE A.EXTRACTION_DATE &gt; &quot; + @RUN_DATE + &quot; AND B.EXTRACTION_DATE &gt; &quot; + @RUN_DATE"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SOURCE_QUERY">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+'AC_' + CAST(ID_CROWD_GROUP AS VARCHAR(25))  LS_DISPLAY_CODE,
+LAT_GROUP AS DISPLAY_LAT,
+LONG_GROUP AS DISPLAY_LONG,
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) AS EVENT_CROWD_DISTANCE,
+CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,[LAT_GROUP],[LONG_GROUP]) &lt; 4500 THEN 1 ELSE 0 END AS FLAG_NEAR_EV_vs_AC
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP A
+CROSS JOIN SMART_M_LISBON.dbo.CROWD_LOCATION_GROUP B
+WHERE A.EXTRACTION_DATE &gt; 2020-03-03 AND B.EXTRACTION_DATE &gt; 2020-03-03</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load FACT Events TRAFFIC"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{787FF479-B134-4BC6-948D-32BCA9E6485A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load FACT Events TRAFFIC">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT Events TRAFFIC\Exec sp merge typed with final"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{8E2DB558-96EE-450C-8E9B-7C97AD3B4868}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Exec sp merge typed with final"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4737154C-4E55-402F-8336-AEFF3A095139}"
+              SQLTask:SqlStatementSource="EXEC sp_Merge__FACT_EVENTS_TRAFFIC_WAZE" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8c1a18e0-b3cb-46d9-b9f8-787bfb8766a4}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Extract Events Typed1"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[FACT_EVENTS_TRAFFIC_WAZE_typed]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="28"
+                          cachedName="LS_EVENT_CODE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[LS_DISPLAY_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="28"
+                          cachedName="LS_DISPLAY_CODE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_DISPLAY_CODE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_LAT]"
+                          cachedDataType="r8"
+                          cachedName="DISPLAY_LAT"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LAT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[DISPLAY_LONG]"
+                          cachedDataType="r8"
+                          cachedName="DISPLAY_LONG"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LONG]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[EVENT_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="EVENT_DATE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[FLAG_NEAR_EV_vs_TW]"
+                          cachedDataType="bool"
+                          cachedName="FLAG_NEAR_EV_vs_TW"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[FLAG_NEAR_EV_vs_TW]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          cachedDataType="r8"
+                          cachedName="EVENT_TRAFFIC_WAZE_DISTANCE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[CONGESTION_LEVEL]"
+                          cachedDataType="i4"
+                          cachedName="CONGESTION_LEVEL"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[CONGESTION_LEVEL]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[CONGESTION_LEVEL]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[ROAD_LENGTH]"
+                          cachedDataType="i4"
+                          cachedName="ROAD_LENGTH"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ROAD_LENGTH]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ROAD_LENGTH]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[SIZE]"
+                          cachedDataType="i4"
+                          cachedName="SIZE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[SIZE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[SIZE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[TRAFFIC_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="TRAFFIC_DATE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[TRAFFIC_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[TRAFFIC_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[ENTITY_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="ENTITY_DATE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ENTITY_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[ENTITY_TIME]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="4"
+                          cachedName="ENTITY_TIME"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_TIME]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ENTITY_TIME]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[AVERAGE_SPEED]"
+                          cachedDataType="i4"
+                          cachedName="AVERAGE_SPEED"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_SPEED]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[AVERAGE_SPEED]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[ID_EVENT]"
+                          cachedDataType="i4"
+                          cachedName="ID_EVENT"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ID_EVENT]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[ID_POSITION_EVENT]"
+                          cachedDataType="i4"
+                          cachedName="ID_POSITION_EVENT"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_POSITION_EVENT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ID_POSITION_EVENT]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].Columns[LINE_S_WKT]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="LINE_S_WKT"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[LINE_S_WKT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LINE_S_WKT]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          dataType="i4"
+                          name="ID_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_DISPLAY_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LAT]"
+                          dataType="r8"
+                          name="DISPLAY_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LONG]"
+                          dataType="r8"
+                          name="DISPLAY_LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="bool"
+                          name="FLAG_NEAR_EV_vs_TW" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[CONGESTION_LEVEL]"
+                          dataType="i4"
+                          name="CONGESTION_LEVEL" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ROAD_LENGTH]"
+                          dataType="i4"
+                          name="ROAD_LENGTH" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[LINE_S_WKT]"
+                          dataType="wstr"
+                          length="4000"
+                          name="LINE_S_WKT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[SIZE]"
+                          dataType="i4"
+                          name="SIZE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[TRAFFIC_DATE]"
+                          dataType="dbDate"
+                          name="TRAFFIC_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          name="ENTITY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_TIME]"
+                          codePage="65001"
+                          dataType="str"
+                          length="4"
+                          name="ENTITY_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          name="ID_POSITION_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_SPEED]"
+                          dataType="i4"
+                          name="AVERAGE_SPEED" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT
+ [LS_EVENT_CODE]
+,[ID_EVENT]
+,[EVENT_DATE]
+,[LS_DISPLAY_CODE]
+,[DISPLAY_LONG]
+,[DISPLAY_LAT]
+,[TRAFFIC_DATE]
+,[ENTITY_DATE]
+,CAST(LEFT(CAST([ENTITY_TIME] AS VARCHAR(12)),2) + SUBSTRING(CAST([ENTITY_TIME] AS VARCHAR(12)),4,1) + '0' AS VARCHAR(4)) AS [ENTITY_TIME]
+,[EVENT_TRAFFIC_WAZE_DISTANCE]
+,[FLAG_NEAR_EV_vs_TW]
+,ABS(AVG([CONGESTION_LEVEL])) AS [CONGESTION_LEVEL]
+,ABS(AVG([AVERAGE_SPEED])) AS [AVERAGE_SPEED]
+,[ROAD_LENGTH]
+,[LINE_S_WKT]
+,[SIZE]
+,[ID_POSITION_EVENT]
+FROM [SMART_M_LISBON].[dbo].[FACT_EVENTS_TRAFFIC_WAZE_typed2]
+GROUP BY
+ [LS_EVENT_CODE]
+,[ID_EVENT]
+,[EVENT_DATE]
+,[LS_DISPLAY_CODE]
+,[DISPLAY_LONG]
+,[DISPLAY_LAT]
+,[TRAFFIC_DATE]
+,[ENTITY_DATE]
+,CAST(LEFT(CAST([ENTITY_TIME] AS VARCHAR(12)),2) + SUBSTRING(CAST([ENTITY_TIME] AS VARCHAR(12)),4,1) + '0' AS VARCHAR(4))
+,[EVENT_TRAFFIC_WAZE_DISTANCE]
+,[FLAG_NEAR_EV_vs_TW]
+,[ROAD_LENGTH]
+,[LINE_S_WKT]
+,[SIZE]
+,[ID_POSITION_EVENT]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          length="28"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ID_EVENT]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ID_EVENT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ID_EVENT]"
+                          name="ID_EVENT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_CODE]"
+                          length="28"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]"
+                          name="LS_DISPLAY_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LONG]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]"
+                          name="DISPLAY_LONG"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LAT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]"
+                          name="DISPLAY_LAT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[TRAFFIC_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[TRAFFIC_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[TRAFFIC_DATE]"
+                          name="TRAFFIC_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ENTITY_DATE]"
+                          name="ENTITY_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ENTITY_TIME]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_TIME]"
+                          length="4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ENTITY_TIME]"
+                          name="ENTITY_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          name="FLAG_NEAR_EV_vs_TW"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[CONGESTION_LEVEL]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[CONGESTION_LEVEL]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[CONGESTION_LEVEL]"
+                          name="CONGESTION_LEVEL"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[AVERAGE_SPEED]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_SPEED]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[AVERAGE_SPEED]"
+                          name="AVERAGE_SPEED"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ROAD_LENGTH]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ROAD_LENGTH]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ROAD_LENGTH]"
+                          name="ROAD_LENGTH"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LINE_S_WKT]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[LINE_S_WKT]"
+                          length="4000"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[LINE_S_WKT]"
+                          name="LINE_S_WKT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[SIZE]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[SIZE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[SIZE]"
+                          name="SIZE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ID_POSITION_EVENT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].Columns[ID_POSITION_EVENT]"
+                          name="ID_POSITION_EVENT"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ID_EVENT]"
+                          dataType="i4"
+                          name="ID_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_DISPLAY_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LONG]"
+                          dataType="r8"
+                          name="DISPLAY_LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LAT]"
+                          dataType="r8"
+                          name="DISPLAY_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[TRAFFIC_DATE]"
+                          dataType="dbDate"
+                          name="TRAFFIC_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          name="ENTITY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_TIME]"
+                          codePage="65001"
+                          dataType="str"
+                          length="4"
+                          name="ENTITY_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="bool"
+                          name="FLAG_NEAR_EV_vs_TW" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[CONGESTION_LEVEL]"
+                          dataType="i4"
+                          name="CONGESTION_LEVEL" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_SPEED]"
+                          dataType="i4"
+                          name="AVERAGE_SPEED" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ROAD_LENGTH]"
+                          dataType="i4"
+                          name="ROAD_LENGTH" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[LINE_S_WKT]"
+                          dataType="wstr"
+                          length="4000"
+                          name="LINE_S_WKT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[SIZE]"
+                          dataType="i4"
+                          name="SIZE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output].ExternalColumns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          name="ID_POSITION_EVENT" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ID_EVENT]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ID_EVENT]"
+                          name="ID_EVENT" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_CODE]"
+                          name="LS_DISPLAY_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LONG]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LONG]"
+                          name="DISPLAY_LONG" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LAT]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LAT]"
+                          name="DISPLAY_LAT" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[TRAFFIC_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[TRAFFIC_DATE]"
+                          name="TRAFFIC_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ENTITY_DATE]"
+                          name="ENTITY_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ENTITY_TIME]"
+                          codePage="65001"
+                          dataType="str"
+                          length="4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ENTITY_TIME]"
+                          name="ENTITY_TIME" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="bool"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          name="FLAG_NEAR_EV_vs_TW" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[CONGESTION_LEVEL]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[CONGESTION_LEVEL]"
+                          name="CONGESTION_LEVEL" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[AVERAGE_SPEED]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[AVERAGE_SPEED]"
+                          name="AVERAGE_SPEED" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ROAD_LENGTH]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ROAD_LENGTH]"
+                          name="ROAD_LENGTH" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[LINE_S_WKT]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[LINE_S_WKT]"
+                          name="LINE_S_WKT" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[SIZE]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[SIZE]"
+                          name="SIZE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ID_POSITION_EVENT]"
+                          name="ID_POSITION_EVENT" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load FACT Events TRAFFIC\Extract Events Typed1.Paths[OLE DB Source Output]"
+                  endId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{96351DC3-BFC4-4A1E-B807-D3D90E43D622}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Extract Events Typed2"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[FACT_EVENTS_TRAFFIC_WAZE_typed2]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[LS_EVENT_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="LS_EVENT_CODE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[LS_DISPLAY_CODE]"
+                          cachedCodepage="65001"
+                          cachedDataType="str"
+                          cachedLength="28"
+                          cachedName="LS_DISPLAY_CODE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[LS_DISPLAY_CODE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[DISPLAY_LAT]"
+                          cachedDataType="r8"
+                          cachedName="DISPLAY_LAT"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LAT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[DISPLAY_LONG]"
+                          cachedDataType="r8"
+                          cachedName="DISPLAY_LONG"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LONG]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[LS_INTERNAL_EVENT_ID]"
+                          cachedDataType="i4"
+                          cachedName="LS_INTERNAL_EVENT_ID"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[EVENT_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="EVENT_DATE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[EVENT_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[FLAG_NEAR_EV_vs_TW]"
+                          cachedDataType="i4"
+                          cachedName="FLAG_NEAR_EV_vs_TW"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[FLAG_NEAR_EV_vs_TW]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          cachedDataType="r8"
+                          cachedName="EVENT_TRAFFIC_WAZE_DISTANCE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[CONGESTION_LEVEL]"
+                          cachedDataType="i8"
+                          cachedName="CONGESTION_LEVEL"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[CONGESTION_LEVEL]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[CONGESTION_LEVEL]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[ROAD_LENGTH]"
+                          cachedDataType="i8"
+                          cachedName="ROAD_LENGTH"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ROAD_LENGTH]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ROAD_LENGTH]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[LINE_S_WKT]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="LINE_S_WKT"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[LINE_S_WKT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LINE_S_WKT]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[SIZE]"
+                          cachedDataType="i4"
+                          cachedName="SIZE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[SIZE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[SIZE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[TRAFFIC_DATE]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="TRAFFIC_DATE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[TRAFFIC_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[TRAFFIC_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[ENTITY_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="ENTITY_DATE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ENTITY_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[ENTITY_TIME]"
+                          cachedDataType="dbTime2"
+                          cachedName="ENTITY_TIME"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_TIME]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ENTITY_TIME]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[VALIDITY_DATE]"
+                          cachedDataType="dbDate"
+                          cachedName="VALIDITY_DATE"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[VALIDITY_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[VALIDITY_DATE]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[VALIDITY_TIME]"
+                          cachedDataType="dbTime2"
+                          cachedName="VALIDITY_TIME"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[VALIDITY_TIME]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[VALIDITY_TIME]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[ID_POSITION_EVENT]"
+                          cachedDataType="i4"
+                          cachedName="ID_POSITION_EVENT"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ID_POSITION_EVENT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ID_POSITION_EVENT]" />
+                        <inputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].Columns[AVERAGE_SPEED]"
+                          cachedDataType="i8"
+                          cachedName="AVERAGE_SPEED"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_SPEED]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[AVERAGE_SPEED]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ID_EVENT]"
+                          dataType="i4"
+                          name="ID_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_DISPLAY_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LAT]"
+                          dataType="r8"
+                          name="DISPLAY_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[DISPLAY_LONG]"
+                          dataType="r8"
+                          name="DISPLAY_LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="bool"
+                          name="FLAG_NEAR_EV_vs_TW" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[CONGESTION_LEVEL]"
+                          dataType="i4"
+                          name="CONGESTION_LEVEL" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ROAD_LENGTH]"
+                          dataType="i4"
+                          name="ROAD_LENGTH" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[LINE_S_WKT]"
+                          dataType="wstr"
+                          length="4000"
+                          name="LINE_S_WKT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[SIZE]"
+                          dataType="i4"
+                          name="SIZE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[TRAFFIC_DATE]"
+                          dataType="dbDate"
+                          name="TRAFFIC_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          name="ENTITY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ENTITY_TIME]"
+                          dataType="dbTime2"
+                          name="ENTITY_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[VALIDITY_DATE]"
+                          dataType="dbDate"
+                          name="VALIDITY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[VALIDITY_TIME]"
+                          dataType="dbTime2"
+                          name="VALIDITY_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          name="ID_POSITION_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input].ExternalColumns[AVERAGE_SPEED]"
+                          dataType="i4"
+                          name="AVERAGE_SPEED" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+'EV_' + CAST(ID_EVENT AS VARCHAR(5))  LS_EVENT_CODE,
+ID_EVENT AS LS_INTERNAL_EVENT_ID, 
+EVENT_DATE,
+'TW_' + CAST(ID_WASE AS VARCHAR(25))  LS_DISPLAY_CODE,
+AVG_LAT AS DISPLAY_LAT,
+AVG_LONG AS DISPLAY_LONG,
+SUBSTRING(TRAFFIC_DATE,1,4) + '-' + SUBSTRING(TRAFFIC_DATE,5,2) + '-' +	SUBSTRING(TRAFFIC_DATE,7,2) AS TRAFFIC_DATE,
+CAST(DATEADD(S, CONVERT(int,LEFT(TW.ENTITY_TS, 10)), '1970-01-01') AS DATE) ENTITY_DATE,
+CAST(DATEADD(S, CONVERT(int,LEFT(TW.ENTITY_TS, 10)), '1970-01-01') AS TIME(0)) ENTITY_TIME,
+CAST(DATEADD(S, CONVERT(int,LEFT(TW.VALIDITY_TS, 10)), '1970-01-01')  AS DATE) AS VALIDITY_DATE,
+CAST(DATEADD(S, CONVERT(int,LEFT(TW.VALIDITY_TS, 10)), '1970-01-01')  AS TIME(0)) AS VALIDITY_TIME,
+--CAST(NULL AS TIME) AS DISPLAY_TIME,
+TRAFFIC_LEVEL AS CONGESTION_LEVEL,
+SPEED AS AVERAGE_SPEED,
+ROAD_LENGTH AS ROAD_LENGTH,
+dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,AVG_LAT,AVG_LONG) AS EVENT_TRAFFIC_WAZE_DISTANCE,
+CASE WHEN dbo.COORDENATE_DISTANCE_FUNCTION(POSITION_LAT,POSITION_LONG,AVG_LAT,AVG_LONG) &lt; 1500 THEN 1 ELSE 0 END AS FLAG_NEAR_EV_vs_TW,
+[LINE_S_WKT],
+20 AS [SIZE],
+[ID_POSITION_EVENT]
+FROM SMART_M_LISBON.dbo.EVENTOS_GROUP EV
+CROSS JOIN SMART_M_LISBON.dbo.WASE_TRAFFIC_CONTROL TW
+--WHERE EV.EVENT_DATE = AC.TRAFFIC_DATE</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">65001</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          length="8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          name="LS_INTERNAL_EVENT_ID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_CODE]"
+                          length="28"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LS_DISPLAY_CODE]"
+                          name="LS_DISPLAY_CODE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LAT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[DISPLAY_LAT]"
+                          name="DISPLAY_LAT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LONG]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[DISPLAY_LONG]"
+                          name="DISPLAY_LONG"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[CONGESTION_LEVEL]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[CONGESTION_LEVEL]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[CONGESTION_LEVEL]"
+                          name="CONGESTION_LEVEL"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ROAD_LENGTH]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ROAD_LENGTH]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ROAD_LENGTH]"
+                          name="ROAD_LENGTH"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          name="FLAG_NEAR_EV_vs_TW"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LINE_S_WKT]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LINE_S_WKT]"
+                          length="4000"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[LINE_S_WKT]"
+                          name="LINE_S_WKT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[SIZE]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[SIZE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[SIZE]"
+                          name="SIZE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[TRAFFIC_DATE]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[TRAFFIC_DATE]"
+                          length="10"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[TRAFFIC_DATE]"
+                          name="TRAFFIC_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ENTITY_DATE]"
+                          name="ENTITY_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ENTITY_TIME]"
+                          dataType="dbTime2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_TIME]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ENTITY_TIME]"
+                          name="ENTITY_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[VALIDITY_DATE]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[VALIDITY_DATE]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[VALIDITY_DATE]"
+                          name="VALIDITY_DATE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[VALIDITY_TIME]"
+                          dataType="dbTime2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[VALIDITY_TIME]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[VALIDITY_TIME]"
+                          name="VALIDITY_TIME"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ID_POSITION_EVENT]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[ID_POSITION_EVENT]"
+                          name="ID_POSITION_EVENT"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[AVERAGE_SPEED]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_SPEED]"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].Columns[AVERAGE_SPEED]"
+                          name="AVERAGE_SPEED"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="8"
+                          name="LS_EVENT_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          name="LS_INTERNAL_EVENT_ID" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[EVENT_DATE]"
+                          dataType="dbDate"
+                          name="EVENT_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          name="LS_DISPLAY_CODE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LAT]"
+                          dataType="r8"
+                          name="DISPLAY_LAT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[DISPLAY_LONG]"
+                          dataType="r8"
+                          name="DISPLAY_LONG" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[CONGESTION_LEVEL]"
+                          dataType="i8"
+                          name="CONGESTION_LEVEL" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ROAD_LENGTH]"
+                          dataType="i8"
+                          name="ROAD_LENGTH" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="i4"
+                          name="FLAG_NEAR_EV_vs_TW" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[LINE_S_WKT]"
+                          dataType="wstr"
+                          length="4000"
+                          name="LINE_S_WKT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[SIZE]"
+                          dataType="i4"
+                          name="SIZE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[TRAFFIC_DATE]"
+                          dataType="wstr"
+                          length="10"
+                          name="TRAFFIC_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          name="ENTITY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ENTITY_TIME]"
+                          dataType="dbTime2"
+                          name="ENTITY_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[VALIDITY_DATE]"
+                          dataType="dbDate"
+                          name="VALIDITY_DATE" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[VALIDITY_TIME]"
+                          dataType="dbTime2"
+                          name="VALIDITY_TIME" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          name="ID_POSITION_EVENT" />
+                        <externalMetadataColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output].ExternalColumns[AVERAGE_SPEED]"
+                          dataType="i8"
+                          name="AVERAGE_SPEED" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LS_EVENT_CODE]"
+                          name="LS_EVENT_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LS_INTERNAL_EVENT_ID]"
+                          name="LS_INTERNAL_EVENT_ID" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[EVENT_DATE]"
+                          name="EVENT_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_CODE]"
+                          codePage="65001"
+                          dataType="str"
+                          length="28"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LS_DISPLAY_CODE]"
+                          name="LS_DISPLAY_CODE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LAT]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LAT]"
+                          name="DISPLAY_LAT" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LONG]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[DISPLAY_LONG]"
+                          name="DISPLAY_LONG" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[TRAFFIC_DATE]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[TRAFFIC_DATE]"
+                          name="TRAFFIC_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ENTITY_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ENTITY_DATE]"
+                          name="ENTITY_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ENTITY_TIME]"
+                          dataType="dbTime2"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ENTITY_TIME]"
+                          name="ENTITY_TIME" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[VALIDITY_DATE]"
+                          dataType="dbDate"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[VALIDITY_DATE]"
+                          name="VALIDITY_DATE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[VALIDITY_TIME]"
+                          dataType="dbTime2"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[VALIDITY_TIME]"
+                          name="VALIDITY_TIME" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[CONGESTION_LEVEL]"
+                          dataType="i8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[CONGESTION_LEVEL]"
+                          name="CONGESTION_LEVEL" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[AVERAGE_SPEED]"
+                          dataType="i8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[AVERAGE_SPEED]"
+                          name="AVERAGE_SPEED" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ROAD_LENGTH]"
+                          dataType="i8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ROAD_LENGTH]"
+                          name="ROAD_LENGTH" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          dataType="r8"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[EVENT_TRAFFIC_WAZE_DISTANCE]"
+                          name="EVENT_TRAFFIC_WAZE_DISTANCE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[FLAG_NEAR_EV_vs_TW]"
+                          name="FLAG_NEAR_EV_vs_TW" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LINE_S_WKT]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[LINE_S_WKT]"
+                          name="LINE_S_WKT" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[SIZE]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[SIZE]"
+                          name="SIZE" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ID_POSITION_EVENT]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ID_POSITION_EVENT]"
+                          name="ID_POSITION_EVENT" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Load FACT Events TRAFFIC\Extract Events Typed2.Paths[OLE DB Source Output]"
+                  endId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load FACT Events TRAFFIC\Truncate typed"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarefa Executar SQL"
+          DTS:DTSID="{BD6FBA18-E5DC-415C-B48F-528C7D361F5E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate typed"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4737154C-4E55-402F-8336-AEFF3A095139}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE&#xA;SMART_M_LISBON.dbo.FACT_EVENTS_TRAFFIC_WAZE_typed" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT Events TRAFFIC.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{42CEC6AD-1F52-4742-957B-C50C0B0D428A}"
+          DTS:From="Package\Load FACT Events TRAFFIC\Truncate typed"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load FACT Events TRAFFIC\Extract Events Typed2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT Events TRAFFIC.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{C023EFE0-C319-4369-B139-13750DB44802}"
+          DTS:From="Package\Load FACT Events TRAFFIC\Extract Events Typed2"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load FACT Events TRAFFIC\Extract Events Typed1" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load FACT Events TRAFFIC.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{60504903-99B5-47EE-8749-547868F90E7E}"
+          DTS:From="Package\Load FACT Events TRAFFIC\Extract Events Typed1"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Load FACT Events TRAFFIC\Exec sp merge typed with final" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Load FACT Events TRAFFIC\Exec sp merge typed with final"
+          TopLeft="5.50000000000003,311.5" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed1"
+          TopLeft="25.5,209.5" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed2"
+          TopLeft="28.5,106.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load FACT Events TRAFFIC\Truncate typed"
+          TopLeft="42.5,5.5" />
+        <EdgeLayout
+          Id="Package\Load FACT Events TRAFFIC.PrecedenceConstraints[Constraint]"
+          TopLeft="119,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FACT Events TRAFFIC.PrecedenceConstraints[Constraint 1]"
+          TopLeft="119,148.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load FACT Events TRAFFIC.PrecedenceConstraints[Constraint 2]"
+          TopLeft="117.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="235,409"
+          Size="235,452"
+          Id="Package\Load FACT Events TRAFFIC"
+          TopLeft="5.50000000000006,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load FACT Events TRAFFIC\Extract Events Typed1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="331,42"
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed"
+          TopLeft="6.50000000000003,107.5" />
+        <NodeLayout
+          Size="302,42"
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed"
+          TopLeft="20,5.5" />
+        <EdgeLayout
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed1.Paths[OLE DB Source Output]"
+          TopLeft="171.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT Events TRAFFIC\Extract Events Typed1\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load FACT Events TRAFFIC\Extract Events Typed2">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="336,42"
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2"
+          TopLeft="5.50000000000003,106.5" />
+        <NodeLayout
+          Size="308,42"
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2"
+          TopLeft="33,6" />
+        <EdgeLayout
+          Id="Package\Load FACT Events TRAFFIC\Extract Events Typed2.Paths[OLE DB Source Output]"
+          TopLeft="187,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.5,58.5"
+              Start="0,0"
+              End="-13.5,51">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.25"
+                    Point2="0,29.25"
+                    Point3="-4,29.25" />
+                  <mssgle:LineSegment
+                    End="-9.49999999999997,29.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.49999999999997,29.25"
+                    Point2="-13.5,29.25"
+                    Point3="-13.5,33.25" />
+                  <mssgle:LineSegment
+                    End="-13.5,51" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT Events TRAFFIC\Extract Events Typed2\DESTINATION FACT_EVENTS_TRAFFIC_WAZE_typed2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT Events TRAFFIC\Extract Events Typed2\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load FACT Events TRAFFIC\Extract Events Typed1\SOURCE FACT_EVENTS_TRAFFIC_WAZE_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

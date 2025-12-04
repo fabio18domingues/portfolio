@@ -1,0 +1,656 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/14/2020 10:11:18 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PC_DO_FABIO"
+  DTS:CreatorName="PC_DO_FABIO\fabiodomingues"
+  DTS:DTSID="{BF7D192D-5762-4DA1-93F3-E65ADED5B308}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="2070"
+  DTS:ObjectName="PRED_RESULTS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="143"
+  DTS:VersionGUID="{C3DE97EF-C4FA-4F15-B07F-5F717892AA85}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A7EE31CA-8C4E-402E-902B-C4F7CECE53DA}"
+      DTS:ObjectName="LocalHost.SMART_M_LISBON">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=SMART_M_LISBON;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PRED_#]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{6D0C3821-5C99-4CA0-AD8B-923F1DA2F57D}"
+      DTS:ObjectName="PRED_#">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Users\fabiodomingues\Documents\Mestrado\TeseWorkProject\PRED_3.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Index"
+              DTS:DTSID="{D775FB4A-D9FC-4E2C-BDF8-CC9A0FA5AA35}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="30MinIntervals"
+              DTS:DTSID="{67098B2B-EDDC-4CA0-9ADF-2BE39F39220A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StopName"
+              DTS:DTSID="{43B4767D-905F-4FDC-BC3A-256C4A86D42D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Actual"
+              DTS:DTSID="{BDAFCE04-C489-4F61-BE63-FFDD53FC3D52}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Predicted"
+              DTS:DTSID="{831F22CC-3C18-4D85-AF08-A8E137318473}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Diff"
+              DTS:DTSID="{DCFBD7F1-2BD2-4396-92FC-8C738BE4FDAC}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5F25F0C0-E9F7-4723-8483-65888F6F53C5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ActualStop">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EAD91352-5A87-4A8D-8619-900EE9267637}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StopsList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Predictions"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{53CFE6FF-53AE-4180-981E-4FDC65C557A2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Predictions"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Predictions\PRED_#"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="2070"
+              name="PRED_#"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Predictions\PRED_#.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[PRED_#]"
+                  connectionManagerRefId="Package.ConnectionManagers[PRED_#]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[30MinIntervals]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[30MinIntervals]"
+                      length="50"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[30MinIntervals]"
+                      name="30MinIntervals"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[StopName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[StopName]"
+                      length="50"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[StopName]"
+                      name="StopName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Actual]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Actual]"
+                      length="50"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Actual]"
+                      name="Actual"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Diff]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Diff]"
+                      length="50"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Diff]"
+                      name="Diff"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Predicted]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Predicted]"
+                      length="50"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Predicted]"
+                      name="Predicted"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Index]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Index]"
+                      length="50"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Index]"
+                      name="Index"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[30MinIntervals]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="30MinIntervals" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Actual]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Actual" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Diff]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Diff" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Predicted]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Predicted" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].ExternalColumns[Index]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="Index" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Predictions\PRED_RESULTS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="PRED_RESULTS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PRED_RESULTS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">65001</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Predictions\PRED_RESULTS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.SMART_M_LISBON]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].Columns[30MinIntervals]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="30MinIntervals"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[30MInIntervals]"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[30MinIntervals]" />
+                    <inputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].Columns[StopName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="StopName"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[StopName]" />
+                    <inputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].Columns[Actual]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Actual"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Actual]"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Actual]" />
+                    <inputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].Columns[Diff]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Diff"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Diff]"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Diff]" />
+                    <inputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].Columns[Predicted]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Predicted"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Predicted]"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Predicted]" />
+                    <inputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].Columns[Index]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Index"
+                      externalMetadataColumnId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                      lineageId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output].Columns[Index]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                      dataType="i8"
+                      name="Index" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[30MInIntervals]"
+                      dataType="dbTimeStamp"
+                      name="30MInIntervals" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[StopName]"
+                      dataType="wstr"
+                      length="50"
+                      name="StopName" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Actual]"
+                      dataType="i4"
+                      name="Actual" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Predicted]"
+                      dataType="i4"
+                      name="Predicted" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[Diff]"
+                      dataType="i4"
+                      name="Diff" />
+                    <externalMetadataColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input].ExternalColumns[PRED_ID]"
+                      codePage="65001"
+                      dataType="str"
+                      length="15"
+                      name="PRED_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Predictions\PRED_RESULTS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Predictions\PRED_RESULTS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Predictions\PRED_RESULTS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Predictions\PRED_RESULTS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Predictions.Paths[Flat File Source Output]"
+              endId="Package\Load Predictions\PRED_RESULTS.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Load Predictions\PRED_#.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Load Predictions"
+          TopLeft="171,154" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Predictions">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="118,42"
+          Id="Package\Load Predictions\PRED_#"
+          TopLeft="295,131" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Load Predictions\PRED_RESULTS"
+          TopLeft="289,272" />
+        <EdgeLayout
+          Id="Package\Load Predictions.Paths[Flat File Source Output]"
+          TopLeft="354,173">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,99"
+              Start="0,0"
+              End="12,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.5"
+                    Point2="0,49.5"
+                    Point3="4,49.5" />
+                  <mssgle:LineSegment
+                    End="8,49.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,49.5"
+                    Point2="12,49.5"
+                    Point3="12,53.5" />
+                  <mssgle:LineSegment
+                    End="12,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Predictions\PRED_RESULTS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
